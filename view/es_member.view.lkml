@@ -22,6 +22,7 @@ view: es_member {
 
   dimension: admin_memo {
     type: string
+    hidden: yes
     sql: ${TABLE}.adminMemo ;;
   }
 
