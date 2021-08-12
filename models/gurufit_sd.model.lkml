@@ -12,7 +12,7 @@ include: "/view/**/es_order_info.view"
 
 
 datagroup: gurufit_sd_default_datagroup {
-    max_cache_age: "1 hour"
+  max_cache_age: "1 hour"
 }
 
 persist_with: gurufit_sd_default_datagroup
