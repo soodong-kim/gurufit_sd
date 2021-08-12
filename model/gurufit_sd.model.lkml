@@ -18,3 +18,9 @@ include: "/view/*.view.lkml"                # include all views in the views/ fo
 #     sql_on: ${users.id} = ${orders.user_id} ;;
 #   }
 # }
+
+
+explore: gurufit_sd {
+  label: "sd gurufit minitest"
+  group_label: "MINI Project"
+}
