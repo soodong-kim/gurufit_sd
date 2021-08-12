@@ -45,4 +45,6 @@ explore:  es_member{
     sql_on: ${es_order.order_no} = ${es_order_goods.order_no};;
     relationship: one_to_many
   }
+
+
 }
