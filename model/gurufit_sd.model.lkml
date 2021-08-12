@@ -11,7 +11,6 @@ include: "/view/**/es_order_goods.view"
 include: "/view/**/es_order_info.view"
 
 
-
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
 #
@@ -26,3 +25,18 @@ include: "/view/**/es_order_info.view"
 #     sql_on: ${users.id} = ${orders.user_id} ;;
 #   }
 # }
+
+
+explore:  es_member{
+  join: es_order {
+    type: left_outer
+    sql_on: ${es_member.mem_no} = ${es_order.mem_no} ;;
+    relationship: one_to_many
+  }
+
+  join: es_order_goods {
+    type: left_outer
+    sql_on: ${es_order.order_no} = ${es_order_goods.order_no};;
+    relationship: one_to_many
+  }
+}
