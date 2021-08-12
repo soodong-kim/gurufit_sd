@@ -21,6 +21,7 @@ include: "/view/*.view.lkml"                # include all views in the views/ fo
 
 
 explore: gurufit_name {
+  view_name: gurufit_name
   label: "sd gurufit minitest"
   group_label: "MINI Project"
 }

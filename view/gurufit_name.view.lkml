@@ -1,5 +1,5 @@
 view: gurufit_name {
- sql_table_name: 'es_member' ;;
+ sql_table_name: gurufit_mariadb_skillchange.es_member;;
 
 
   dimension: memNo {
