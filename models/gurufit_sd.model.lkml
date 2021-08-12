@@ -37,13 +37,13 @@ explore:  es_member{
   join: es_order {
     type: left_outer
     sql_on: ${es_member.mem_no} = ${es_order.mem_no} ;;
-    relationship: one_to_many
+    relationship: many_to_one
   }
 
   join: es_order_goods {
     type: left_outer
     sql_on: ${es_order.order_no} = ${es_order_goods.order_no};;
-    relationship: one_to_many
+    relationship: many_to_one
   }
 }
 
@@ -51,19 +51,19 @@ explore: es_order_info {
   join: es_order_goods {
     type: left_outer
     sql_on: ${es_order_info.order_no} = ${es_order_goods.order_no} ;;
-    relationship: one_to_many
+    relationship: many_to_one
   }
 
   join: es_goods {
     type: left_outer
     sql_on: ${es_order_goods.goods_no} = ${es_goods.goods_no} ;;
-    relationship:  many_to_one
+    relationship:  one_to_many
   }
 
   join: es_goods_link_category {
     type: left_outer
     sql_on: ${es_goods.goods_no} = ${es_goods_link_category.goods_no} ;;
-    relationship: one_to_many
+    relationship: many_to_one
   }
 
 }
