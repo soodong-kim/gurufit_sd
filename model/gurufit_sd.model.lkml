@@ -1,8 +1,16 @@
 connection: "gurufit_mariadb_skillchange"
 
-include: "/view/*.view.lkml"                # include all views in the views/ folder in this project
-# include: "/**/*.view.lkml"                 # include all views in this project
-# include: "my_dashboard.dashboard.lookml"   # include a LookML dashboard called my_dashboard
+# include all views in the views/ folder in this project
+# include: "/**/*.view.lkml"
+include: "/view/**/es_category_brand.view"
+include: "/view/**/es_goods.view"
+include: "/view/**/es_goods_link_category.view"
+include: "/view/**/es_member.view"
+include: "/view/**/es_order.view"
+include: "/view/**/es_order_goods.view"
+include: "/view/**/es_order_info.view"
+
+
 
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
@@ -18,10 +26,3 @@ include: "/view/*.view.lkml"                # include all views in the views/ fo
 #     sql_on: ${users.id} = ${orders.user_id} ;;
 #   }
 # }
-
-
-explore: gurufit_name {
-  view_name: gurufit_name
-  label: "sd gurufit minitest"
-  group_label: "MINI Project"
-}
