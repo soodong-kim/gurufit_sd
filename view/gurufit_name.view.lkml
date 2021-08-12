@@ -1,4 +1,4 @@
-view: gurufit_sd {
+view: gurufit_name {
 
   dimension: name {
     type: string
