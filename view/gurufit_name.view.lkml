@@ -1,7 +1,9 @@
 view: gurufit_name {
+ sql_table_name: 'es_member' ;;
 
-  dimension: name {
-    type: string
+
+  dimension: memNo {
+    type: number
     sql: ${TABLE} ;;
   }
 
