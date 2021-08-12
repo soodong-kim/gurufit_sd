@@ -45,6 +45,25 @@ explore:  es_member{
     sql_on: ${es_order.order_no} = ${es_order_goods.order_no};;
     relationship: one_to_many
   }
+}
 
+explore: es_order_info {
+  join: es_order_goods {
+    type: left_outer
+    sql_on: ${es_order_info.order_no} = ${es_order_goods.order_no} ;;
+    relationship: one_to_many
+  }
+
+  join: es_goods {
+    type: left_outer
+    sql_on: ${es_order_goods.goods_no} = ${es_goods.goods_no} ;;
+    relationship:  many_to_one
+  }
+
+  join: es_goods_link_category {
+    type: left_outer
+    sql_on: ${es_goods.goods_no} = ${es_goods_link_category.goods_no} ;;
+    relationship: one_to_many
+  }
 
 }
