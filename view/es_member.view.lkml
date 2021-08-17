@@ -10,63 +10,31 @@ view: es_member {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Address" in Explore.
 
+  #주소
   dimension: address {
     type: string
     sql: ${TABLE}.address ;;
   }
 
+  #상세주소
   dimension: address_sub {
     type: string
     sql: ${TABLE}.addressSub ;;
   }
 
-  dimension: admin_memo {
+  #우편번호
+  dimension: zipcode {
+    type: zipcode
+    sql: ${TABLE}.zipcode ;;
+  }
+
+  #우편번호(5자리)
+  dimension: zonecode {
     type: string
-    hidden: yes
-    sql: ${TABLE}.adminMemo ;;
+    sql: ${TABLE}.zonecode ;;
   }
 
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
-
-  dimension_group: adult_confirm_dt {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.adultConfirmDt ;;
-  }
-
-  dimension: adult_fl {
-    type: string
-    sql: ${TABLE}.adultFl ;;
-  }
-
-  dimension: app_fl {
-    type: string
-    sql: ${TABLE}.appFl ;;
-  }
-
-  dimension_group: approval_dt {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.approvalDt ;;
-  }
-
+  #생년월일
   dimension_group: birth_dt {
     type: time
     timeframes: [
@@ -82,6 +50,286 @@ view: es_member {
     sql: ${TABLE}.birthDt ;;
   }
 
+  #가입일
+  dimension_group: entry_dt {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.entryDt ;;
+  }
+
+  #최종로그인
+  dimension_group: last_login_dt {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.lastLoginDt ;;
+  }
+
+  #최종구매일
+  dimension_group: last_sale_dt {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.lastSaleDt ;;
+  }
+
+  #등록일
+  dimension_group: reg_dt {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.regDt ;;
+  }
+
+  #회원번호(primarykey)
+  dimension: mem_no {
+    type: number
+    sql: ${TABLE}.memNo ;;
+  }
+
+  #비밀번호
+  dimension: mem_pw {
+    type: string
+    sql: ${TABLE}.memPw ;;
+  }
+
+  #닉네임
+  dimension: nick_nm {
+    type: string
+    sql: ${TABLE}.nickNm ;;
+  }
+
+  #아이디
+  dimension: mem_id {
+    type: string
+    sql: ${TABLE}.memId ;;
+  }
+
+  #이름
+  dimension: mem_nm {
+    type: string
+    sql: ${TABLE}.memNm ;;
+  }
+
+  #핸드폰
+  dimension: cell_phone {
+    type: string
+    sql: ${TABLE}.cellPhone ;;
+  }
+
+  #이메일
+  dimension: email {
+    type: string
+    sql: ${TABLE}.email ;;
+  }
+
+  #전화번호
+  dimension: phone {
+    type: string
+    sql: ${TABLE}.phone ;;
+  }
+
+  #성별
+  dimension: sex_fl {
+    type: string
+    sql: ${TABLE}.sexFl ;;
+  }
+
+  #가입경로
+  dimension: entry_path {
+    type: string
+    sql: ${TABLE}.entryPath ;;
+  }
+
+  #회원등급sno
+  dimension: group_sno {
+    type: number
+    sql: ${TABLE}.groupSno ;;
+  }
+
+  #본인확인방법
+  dimension: rncheck {
+    type: string
+    sql: ${TABLE}.rncheck ;;
+  }
+
+  #추천인등록여부
+  dimension: recomm_fl {
+    type: string
+    sql: ${TABLE}.recommFl ;;
+  }
+
+  #추천인id
+  dimension: recomm_id {
+    type: string
+    sql: ${TABLE}.recommId ;;
+  }
+
+  #로그인 횟수
+  dimension: login_cnt {
+    type: number
+    sql: ${TABLE}.loginCnt ;;
+  }
+
+  #로그인 제한
+  dimension: login_limit {
+    type: string
+    sql: ${TABLE}.loginLimit ;;
+  }
+
+  #최종로그인 IP
+  dimension: last_login_ip {
+    type: string
+    sql: ${TABLE}.lastLoginIp ;;
+  }
+
+  #적립금
+  dimension: mileage {
+    type: number
+    sql: ${TABLE}.mileage ;;
+  }
+
+  #총구매금액
+  dimension: sale_amt {
+    type: number
+    sql: ${TABLE}.saleAmt ;;
+  }
+
+  #구매횟수
+  dimension: sale_cnt {
+    type: number
+    sql: ${TABLE}.saleCnt ;;
+  }
+
+  #예치금
+  dimension: deposit {
+    type: number
+    sql: ${TABLE}.deposit ;;
+  }
+
+  #휴먼회원여부
+  dimension: sleep_fl {
+    type: string
+    sql: ${TABLE}.sleepFl ;;
+  }
+
+  #성인여부인증시간
+  dimension_group: adult_confirm_dt {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.adultConfirmDt ;;
+  }
+
+  #성인여부
+  dimension: adult_fl {
+    type: string
+    sql: ${TABLE}.adultFl ;;
+  }
+
+  #승인여부
+  dimension: app_fl {
+    type: string
+    sql: ${TABLE}.appFl ;;
+  }
+
+  #등급수정일
+  dimension_group: group_mod_dt {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.groupModDt ;;
+  }
+
+  #등급유효일
+  dimension_group: group_valid_dt {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.groupValidDt ;;
+  }
+
+  #비밀번호변경안내일
+  dimension_group: guide_password_dt {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.guidePasswordDt ;;
+  }
+
+  #가입승인일
+  dimension_group: approval_dt {
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.approvalDt ;;
+  }
+
+  #생일이벤트여부-sms, 쿠폰 등 처리일자
   dimension_group: birth_event_fl {
     type: time
     timeframes: [
@@ -97,31 +345,7 @@ view: es_member {
     sql: ${TABLE}.birthEventFl ;;
   }
 
-  dimension: busi_no {
-    type: string
-    sql: ${TABLE}.busiNo ;;
-  }
-
-  dimension: calendar_fl {
-    type: string
-    sql: ${TABLE}.calendarFl ;;
-  }
-
-  dimension: cell_phone {
-    type: string
-    sql: ${TABLE}.cellPhone ;;
-  }
-
-  dimension: cell_phone_country_code {
-    type: string
-    sql: ${TABLE}.cellPhoneCountryCode ;;
-  }
-
-  dimension: ceo {
-    type: string
-    sql: ${TABLE}.ceo ;;
-  }
-
+  #비밀번호 변경일
   dimension_group: change_password_dt {
     type: time
     timeframes: [
@@ -136,46 +360,7 @@ view: es_member {
     sql: ${TABLE}.changePasswordDt ;;
   }
 
-  dimension: com_address {
-    type: string
-    sql: ${TABLE}.comAddress ;;
-  }
-
-  dimension: com_address_sub {
-    type: string
-    sql: ${TABLE}.comAddressSub ;;
-  }
-
-  dimension: com_zipcode {
-    type: string
-    sql: ${TABLE}.comZipcode ;;
-  }
-
-  dimension: com_zonecode {
-    type: string
-    sql: ${TABLE}.comZonecode ;;
-  }
-
-  dimension: company {
-    type: string
-    sql: ${TABLE}.company ;;
-  }
-
-  dimension: deposit {
-    type: number
-    sql: ${TABLE}.deposit ;;
-  }
-
-  dimension: dupeinfo {
-    type: string
-    sql: ${TABLE}.dupeinfo ;;
-  }
-
-  dimension: email {
-    type: string
-    sql: ${TABLE}.email ;;
-  }
-
+  #가입혜택지급일
   dimension_group: entry_benefit_offer_dt {
     type: time
     timeframes: [
@@ -190,254 +375,7 @@ view: es_member {
     sql: ${TABLE}.entryBenefitOfferDt ;;
   }
 
-  dimension_group: entry_dt {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.entryDt ;;
-  }
-
-  dimension: entry_path {
-    type: string
-    sql: ${TABLE}.entryPath ;;
-  }
-
-  dimension: ex1 {
-    type: string
-    sql: ${TABLE}.ex1 ;;
-  }
-
-  dimension: ex2 {
-    type: string
-    sql: ${TABLE}.ex2 ;;
-  }
-
-  dimension: ex3 {
-    type: string
-    sql: ${TABLE}.ex3 ;;
-  }
-
-  dimension: ex4 {
-    type: string
-    sql: ${TABLE}.ex4 ;;
-  }
-
-  dimension: ex5 {
-    type: string
-    sql: ${TABLE}.ex5 ;;
-  }
-
-  dimension: ex6 {
-    type: string
-    sql: ${TABLE}.ex6 ;;
-  }
-
-  dimension: expiration_fl {
-    type: string
-    sql: ${TABLE}.expirationFl ;;
-  }
-
-  dimension: fax {
-    type: string
-    sql: ${TABLE}.fax ;;
-  }
-
-  dimension: foreigner {
-    type: string
-    sql: ${TABLE}.foreigner ;;
-  }
-
-  dimension_group: group_mod_dt {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.groupModDt ;;
-  }
-
-  dimension: group_sno {
-    type: number
-    sql: ${TABLE}.groupSno ;;
-  }
-
-  dimension_group: group_valid_dt {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.groupValidDt ;;
-  }
-
-  dimension_group: guide_password_dt {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.guidePasswordDt ;;
-  }
-
-  dimension: interest {
-    type: string
-    sql: ${TABLE}.interest ;;
-  }
-
-  dimension: item {
-    type: string
-    sql: ${TABLE}.item ;;
-  }
-
-  dimension: job {
-    type: string
-    sql: ${TABLE}.job ;;
-  }
-
-  dimension_group: last_login_dt {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.lastLoginDt ;;
-  }
-
-  dimension: last_login_ip {
-    type: string
-    sql: ${TABLE}.lastLoginIp ;;
-  }
-
-  dimension_group: last_sale_dt {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.lastSaleDt ;;
-  }
-
-  dimension_group: life_member_conversion_dt {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.lifeMemberConversionDt ;;
-  }
-
-  dimension: login_cnt {
-    type: number
-    sql: ${TABLE}.loginCnt ;;
-  }
-
-  dimension: login_limit {
-    type: string
-    sql: ${TABLE}.loginLimit ;;
-  }
-
-  dimension: mailling_fl {
-    type: string
-    sql: ${TABLE}.maillingFl ;;
-  }
-
-  dimension: mall_sno {
-    type: number
-    sql: ${TABLE}.mallSno ;;
-  }
-
-  dimension_group: marri {
-    type: time
-    timeframes: [
-      raw,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    convert_tz: no
-    datatype: date
-    sql: ${TABLE}.marriDate ;;
-  }
-
-  dimension: marri_fl {
-    type: string
-    sql: ${TABLE}.marriFl ;;
-  }
-
-  dimension: mem_id {
-    type: string
-    sql: ${TABLE}.memId ;;
-  }
-
-  dimension: mem_nm {
-    type: string
-    sql: ${TABLE}.memNm ;;
-  }
-
-  dimension: mem_no {
-    type: number
-    sql: ${TABLE}.memNo ;;
-  }
-
-  dimension: mem_pw {
-    type: string
-    sql: ${TABLE}.memPw ;;
-  }
-
-  dimension: member_fl {
-    type: string
-    sql: ${TABLE}.memberFl ;;
-  }
-
-  dimension: memo {
-    type: string
-    sql: ${TABLE}.memo ;;
-  }
-
-  dimension: mileage {
-    type: number
-    sql: ${TABLE}.mileage ;;
-  }
-
+  #수정일
   dimension_group: mod_dt {
     type: time
     timeframes: [
@@ -452,157 +390,60 @@ view: es_member {
     sql: ${TABLE}.modDt ;;
   }
 
-  dimension: nick_nm {
+  #중복가입확인정보
+  dimension: dupeinfo {
     type: string
-    sql: ${TABLE}.nickNm ;;
+    sql: ${TABLE}.dupeinfo ;;
   }
 
-  dimension: pakey {
+  #결혼여부
+  dimension: marri_fl {
     type: string
-    sql: ${TABLE}.pakey ;;
+    sql: ${TABLE}.marriFl ;;
   }
 
-  dimension: phone {
+  #개인정보유효기간
+  dimension: expiration_fl {
     type: string
-    sql: ${TABLE}.phone ;;
+    sql: ${TABLE}.expirationFl ;;
   }
 
-  dimension: phone_country_code {
+  #관심분야
+  dimension: interest {
     type: string
-    sql: ${TABLE}.phoneCountryCode ;;
+    sql: ${TABLE}.interest ;;
   }
 
-  dimension: private_approval_fl {
+  #종목
+  dimension: item {
     type: string
-    sql: ${TABLE}.privateApprovalFl ;;
+    sql: ${TABLE}.item ;;
   }
 
-  dimension: private_approval_option_fl {
+  #회원구분
+  dimension: member_fl {
     type: string
-    sql: ${TABLE}.privateApprovalOptionFl ;;
+    sql: ${TABLE}.memberFl ;;
   }
 
-  dimension: private_consign_fl {
-    type: string
-    sql: ${TABLE}.privateConsignFl ;;
-  }
+  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
+  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
 
-  dimension: private_offer_fl {
-    type: string
-    sql: ${TABLE}.privateOfferFl ;;
-  }
-
-  dimension: pronounce_name {
-    type: string
-    sql: ${TABLE}.pronounceName ;;
-  }
-
-  dimension: re_entry_fl {
-    type: string
-    sql: ${TABLE}.reEntryFl ;;
-  }
-
-  dimension: recomm_fl {
-    type: string
-    sql: ${TABLE}.recommFl ;;
-  }
-
-  dimension: recomm_id {
-    type: string
-    sql: ${TABLE}.recommId ;;
-  }
-
-  dimension_group: reg_dt {
+ #결혼일
+  dimension_group: marri {
     type: time
+    hidden: yes
     timeframes: [
       raw,
-      time,
       date,
       week,
       month,
       quarter,
       year
     ]
-    sql: ${TABLE}.regDt ;;
-  }
-
-  dimension: rncheck {
-    type: string
-    sql: ${TABLE}.rncheck ;;
-  }
-
-  dimension: sale_amt {
-    type: number
-    sql: ${TABLE}.saleAmt ;;
-  }
-
-  dimension: sale_cnt {
-    type: number
-    sql: ${TABLE}.saleCnt ;;
-  }
-
-  dimension: service {
-    type: string
-    sql: ${TABLE}.service ;;
-  }
-
-  dimension: sex_fl {
-    type: string
-    sql: ${TABLE}.sexFl ;;
-  }
-
-  dimension: simple_join_fl {
-    type: string
-    sql: ${TABLE}.simpleJoinFl ;;
-  }
-
-  dimension: sleep_fl {
-    type: string
-    sql: ${TABLE}.sleepFl ;;
-  }
-
-  dimension: sleep_mail_fl {
-    type: string
-    sql: ${TABLE}.sleepMailFl ;;
-  }
-
-  dimension: sleep_sms_fl {
-    type: string
-    sql: ${TABLE}.sleepSmsFl ;;
-  }
-
-  dimension_group: sleep_wake_dt {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.sleepWakeDt ;;
-  }
-
-  dimension: sms_fl {
-    type: string
-    sql: ${TABLE}.smsFl ;;
-  }
-
-  dimension: under14_consent_fl {
-    type: string
-    sql: ${TABLE}.under14ConsentFl ;;
-  }
-
-  dimension: zipcode {
-    type: zipcode
-    sql: ${TABLE}.zipcode ;;
-  }
-
-  dimension: zonecode {
-    type: string
-    sql: ${TABLE}.zonecode ;;
+    convert_tz: no
+    datatype: date
+    sql: ${TABLE}.marriDate ;;
   }
 
   # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
@@ -611,7 +452,7 @@ view: es_member {
 
   measure: count {
     type: count
-    drill_fields: [pronounce_name]
+    drill_fields: []
   }
 
   # These sum and average measures are hidden by default.
@@ -653,18 +494,6 @@ view: es_member {
     sql: ${login_cnt} ;;
   }
 
-  measure: total_mall_sno {
-    type: sum
-    hidden: yes
-    sql: ${mall_sno} ;;
-  }
-
-  measure: average_mall_sno {
-    type: average
-    hidden: yes
-    sql: ${mall_sno} ;;
-  }
-
   measure: total_mem_no {
     type: sum
     hidden: yes
@@ -691,25 +520,25 @@ view: es_member {
 
   measure: total_sale_amt {
     type: sum
-    hidden: yes
+    hidden: no
     sql: ${sale_amt} ;;
   }
 
   measure: average_sale_amt {
     type: average
-    hidden: yes
+    hidden: no
     sql: ${sale_amt} ;;
   }
 
   measure: total_sale_cnt {
     type: sum
-    hidden: yes
+    hidden: no
     sql: ${sale_cnt} ;;
   }
 
   measure: average_sale_cnt {
     type: average
-    hidden: yes
+    hidden: no
     sql: ${sale_cnt} ;;
   }
 }

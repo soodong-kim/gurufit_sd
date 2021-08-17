@@ -10,19 +10,158 @@ view: es_order_info {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Custom ID Number" in Explore.
 
-  dimension: custom_id_number {
-    type: string
-    sql: ${TABLE}.customIdNumber ;;
+
+  #일련번호(PRIMARY KEY)
+  dimension: sno {
+    type: number
+    sql: ${TABLE}.sno ;;
   }
 
-  dimension: delivery_visit {
+  #주문번호
+  dimension: order_no {
     type: string
-    sql: ${TABLE}.deliveryVisit ;;
+    sql: ${TABLE}.orderNo ;;
   }
 
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
+  #주문시 남기는 글
+  dimension: order_memo {
+    type: string
+    sql: ${TABLE}.orderMemo ;;
+  }
 
+  #묶음배송코드
+  dimension: packet_code {
+    type: string
+    sql: ${TABLE}.packetCode ;;
+  }
+
+  #주문자 핸드폰번호
+  dimension: order_cell_phone {
+    type: string
+    sql: ${TABLE}.orderCellPhone ;;
+  }
+
+  #주문자 E-MAIL
+  dimension: order_email {
+    type: string
+    sql: ${TABLE}.orderEmail ;;
+  }
+
+  #주문자이름
+  dimension: order_name {
+    type: string
+    sql: ${TABLE}.orderName ;;
+  }
+
+  #주문자 전화번호
+  dimension: order_phone {
+    type: string
+    sql: ${TABLE}.orderPhone ;;
+  }
+
+  #주문자주소
+  dimension: order_address {
+    type: string
+    sql: ${TABLE}.orderAddress ;;
+  }
+
+  #주문자 나머지주소
+  dimension: order_address_sub {
+    type: string
+    sql: ${TABLE}.orderAddressSub ;;
+  }
+
+  #주문자 도시
+  dimension: order_city {
+    type: string
+    sql: ${TABLE}.orderCity ;;
+  }
+
+  #주문자 우편번호
+  dimension: order_zipcode {
+    type: string
+    sql: ${TABLE}.orderZipcode ;;
+  }
+
+  #주문자 우편번호(10자리)
+  dimension: order_zonecode {
+    type: string
+    sql: ${TABLE}.orderZonecode ;;
+  }
+
+  #주문자 주/지방/지역
+  dimension: order_state {
+    type: string
+    sql: ${TABLE}.orderState ;;
+  }
+
+  #수취인 안심번호 사용여부(n:미사용, y:사용, w:발급대기, c:사용해지)
+  dimension: receiver_use_safe_number_fl {
+    type: string
+    sql: ${TABLE}.receiverUseSafeNumberFl ;;
+  }
+
+  #수취인 핸드폰 번호
+  dimension: receiver_cell_phone {
+    type: string
+    sql: ${TABLE}.receiverCellPhone ;;
+  }
+
+  #수취인 이름
+  dimension: receiver_name {
+    type: string
+    sql: ${TABLE}.receiverName ;;
+  }
+
+  #수취인 전화번호
+  dimension: receiver_phone {
+    type: string
+    sql: ${TABLE}.receiverPhone ;;
+  }
+
+  #수취인 안심번호
+  dimension: receiver_safe_number {
+    type: string
+    sql: ${TABLE}.receiverSafeNumber ;;
+  }
+
+  #수취인 주소
+  dimension: receiver_address {
+    type: string
+    sql: ${TABLE}.receiverAddress ;;
+  }
+
+  #수취인 상세주소
+  dimension: receiver_address_sub {
+    type: string
+    sql: ${TABLE}.receiverAddressSub ;;
+  }
+
+  #수취인 우편번호
+  dimension: receiver_zipcode {
+    type: string
+    sql: ${TABLE}.receiverZipcode ;;
+  }
+
+  #수취인 우편번호(10자리)
+  dimension: receiver_zonecode {
+    type: string
+    sql: ${TABLE}.receiverZonecode ;;
+  }
+
+  #수취인 도시
+  dimension: receiver_city {
+    type: string
+    sql: ${TABLE}.receiverCity ;;
+  }
+
+  #수취인 주/지방/지역
+  dimension: receiver_state {
+    type: string
+    sql: ${TABLE}.receiverState ;;
+  }
+
+  #수정일
   dimension_group: mod_dt {
     type: time
     timeframes: [
@@ -37,161 +176,7 @@ view: es_order_info {
     sql: ${TABLE}.modDt ;;
   }
 
-  dimension: order_address {
-    type: string
-    sql: ${TABLE}.orderAddress ;;
-  }
-
-  dimension: order_address_sub {
-    type: string
-    sql: ${TABLE}.orderAddressSub ;;
-  }
-
-  dimension: order_cell_phone {
-    type: string
-    sql: ${TABLE}.orderCellPhone ;;
-  }
-
-  dimension: order_cell_phone_prefix {
-    type: number
-    sql: ${TABLE}.orderCellPhonePrefix ;;
-  }
-
-  dimension: order_cell_phone_prefix_code {
-    type: string
-    sql: ${TABLE}.orderCellPhonePrefixCode ;;
-  }
-
-  dimension: order_city {
-    type: string
-    sql: ${TABLE}.orderCity ;;
-  }
-
-  dimension: order_email {
-    type: string
-    sql: ${TABLE}.orderEmail ;;
-  }
-
-  dimension: order_info_cd {
-    type: yesno
-    sql: ${TABLE}.orderInfoCd ;;
-  }
-
-  dimension: order_memo {
-    type: string
-    sql: ${TABLE}.orderMemo ;;
-  }
-
-  dimension: order_name {
-    type: string
-    sql: ${TABLE}.orderName ;;
-  }
-
-  dimension: order_no {
-    type: string
-    sql: ${TABLE}.orderNo ;;
-  }
-
-  dimension: order_phone {
-    type: string
-    sql: ${TABLE}.orderPhone ;;
-  }
-
-  dimension: order_phone_prefix {
-    type: number
-    sql: ${TABLE}.orderPhonePrefix ;;
-  }
-
-  dimension: order_phone_prefix_code {
-    type: string
-    sql: ${TABLE}.orderPhonePrefixCode ;;
-  }
-
-  dimension: order_state {
-    type: string
-    sql: ${TABLE}.orderState ;;
-  }
-
-  dimension: order_zipcode {
-    type: string
-    sql: ${TABLE}.orderZipcode ;;
-  }
-
-  dimension: order_zonecode {
-    type: string
-    sql: ${TABLE}.orderZonecode ;;
-  }
-
-  dimension: packet_code {
-    type: string
-    sql: ${TABLE}.packetCode ;;
-  }
-
-  dimension: receiver_address {
-    type: string
-    sql: ${TABLE}.receiverAddress ;;
-  }
-
-  dimension: receiver_address_sub {
-    type: string
-    sql: ${TABLE}.receiverAddressSub ;;
-  }
-
-  dimension: receiver_cell_phone {
-    type: string
-    sql: ${TABLE}.receiverCellPhone ;;
-  }
-
-  dimension: receiver_cell_phone_prefix {
-    type: number
-    sql: ${TABLE}.receiverCellPhonePrefix ;;
-  }
-
-  dimension: receiver_cell_phone_prefix_code {
-    type: string
-    sql: ${TABLE}.receiverCellPhonePrefixCode ;;
-  }
-
-  dimension: receiver_city {
-    type: string
-    sql: ${TABLE}.receiverCity ;;
-  }
-
-  dimension: receiver_country {
-    type: string
-    sql: ${TABLE}.receiverCountry ;;
-  }
-
-  dimension: receiver_country_code {
-    type: string
-    sql: ${TABLE}.receiverCountryCode ;;
-  }
-
-  dimension: receiver_name {
-    type: string
-    sql: ${TABLE}.receiverName ;;
-  }
-
-  dimension: receiver_phone {
-    type: string
-    sql: ${TABLE}.receiverPhone ;;
-  }
-
-  dimension: receiver_phone_prefix {
-    type: number
-    sql: ${TABLE}.receiverPhonePrefix ;;
-  }
-
-  dimension: receiver_phone_prefix_code {
-    type: string
-    sql: ${TABLE}.receiverPhonePrefixCode ;;
-  }
-
-  dimension: receiver_safe_number {
-    type: string
-    sql: ${TABLE}.receiverSafeNumber ;;
-  }
-
+  #수취인 안심번호 발급일자
   dimension_group: receiver_safe_number_dt {
     type: time
     timeframes: [
@@ -206,26 +191,7 @@ view: es_order_info {
     sql: ${TABLE}.receiverSafeNumberDt ;;
   }
 
-  dimension: receiver_state {
-    type: string
-    sql: ${TABLE}.receiverState ;;
-  }
-
-  dimension: receiver_use_safe_number_fl {
-    type: string
-    sql: ${TABLE}.receiverUseSafeNumberFl ;;
-  }
-
-  dimension: receiver_zipcode {
-    type: string
-    sql: ${TABLE}.receiverZipcode ;;
-  }
-
-  dimension: receiver_zonecode {
-    type: string
-    sql: ${TABLE}.receiverZonecode ;;
-  }
-
+  #등록일
   dimension_group: reg_dt {
     type: time
     timeframes: [
@@ -240,35 +206,7 @@ view: es_order_info {
     sql: ${TABLE}.regDt ;;
   }
 
-  dimension: sms_fl {
-    type: string
-    sql: ${TABLE}.smsFl ;;
-  }
 
-  dimension: sno {
-    type: number
-    sql: ${TABLE}.sno ;;
-  }
-
-  dimension: visit_address {
-    type: string
-    sql: ${TABLE}.visitAddress ;;
-  }
-
-  dimension: visit_memo {
-    type: string
-    sql: ${TABLE}.visitMemo ;;
-  }
-
-  dimension: visit_name {
-    type: string
-    sql: ${TABLE}.visitName ;;
-  }
-
-  dimension: visit_phone {
-    type: string
-    sql: ${TABLE}.visitPhone ;;
-  }
 
   # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
   # measures for numeric dimensions, but you can also add measures of many different types.
@@ -276,60 +214,11 @@ view: es_order_info {
 
   measure: count {
     type: count
-    drill_fields: [visit_name, order_name, receiver_name]
+    drill_fields: [order_name, receiver_name]
   }
 
   # These sum and average measures are hidden by default.
   # If you want them to show up in your explore, remove hidden: yes.
-
-  measure: total_order_cell_phone_prefix {
-    type: sum
-    hidden: yes
-    sql: ${order_cell_phone_prefix} ;;
-  }
-
-  measure: average_order_cell_phone_prefix {
-    type: average
-    hidden: yes
-    sql: ${order_cell_phone_prefix} ;;
-  }
-
-  measure: total_order_phone_prefix {
-    type: sum
-    hidden: yes
-    sql: ${order_phone_prefix} ;;
-  }
-
-  measure: average_order_phone_prefix {
-    type: average
-    hidden: yes
-    sql: ${order_phone_prefix} ;;
-  }
-
-  measure: total_receiver_cell_phone_prefix {
-    type: sum
-    hidden: yes
-    sql: ${receiver_cell_phone_prefix} ;;
-  }
-
-  measure: average_receiver_cell_phone_prefix {
-    type: average
-    hidden: yes
-    sql: ${receiver_cell_phone_prefix} ;;
-  }
-
-  measure: total_receiver_phone_prefix {
-    type: sum
-    hidden: yes
-    sql: ${receiver_phone_prefix} ;;
-  }
-
-  measure: average_receiver_phone_prefix {
-    type: average
-    hidden: yes
-    sql: ${receiver_phone_prefix} ;;
-  }
-
   measure: total_sno {
     type: sum
     hidden: yes

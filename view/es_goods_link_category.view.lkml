@@ -10,62 +10,20 @@ view: es_goods_link_category {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Cate Cd" in Explore.
 
+
+  #카테고리코드
   dimension: cate_cd {
     type: string
     sql: ${TABLE}.cateCd ;;
   }
 
-  dimension: cate_link_fl {
-    type: string
-    sql: ${TABLE}.cateLinkFl ;;
-  }
-
-  dimension: fix_sort {
-    type: number
-    sql: ${TABLE}.fixSort ;;
-  }
-
+  #상품번호
   dimension: goods_no {
     type: number
     sql: ${TABLE}.goodsNo ;;
   }
 
-  dimension: goods_sort {
-    type: number
-    sql: ${TABLE}.goodsSort ;;
-  }
-
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
-
-  dimension_group: mod_dt {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.modDt ;;
-  }
-
-  dimension_group: reg_dt {
-    type: time
-    timeframes: [
-      raw,
-      time,
-      date,
-      week,
-      month,
-      quarter,
-      year
-    ]
-    sql: ${TABLE}.regDt ;;
-  }
-
+  #일련번호(PRIMARY KEY)
   dimension: sno {
     type: number
     sql: ${TABLE}.sno ;;
@@ -82,19 +40,6 @@ view: es_goods_link_category {
 
   # These sum and average measures are hidden by default.
   # If you want them to show up in your explore, remove hidden: yes.
-
-  measure: total_fix_sort {
-    type: sum
-    hidden: yes
-    sql: ${fix_sort} ;;
-  }
-
-  measure: average_fix_sort {
-    type: average
-    hidden: yes
-    sql: ${fix_sort} ;;
-  }
-
   measure: total_goods_no {
     type: sum
     hidden: yes
@@ -105,18 +50,6 @@ view: es_goods_link_category {
     type: average
     hidden: yes
     sql: ${goods_no} ;;
-  }
-
-  measure: total_goods_sort {
-    type: sum
-    hidden: yes
-    sql: ${goods_sort} ;;
-  }
-
-  measure: average_goods_sort {
-    type: average
-    hidden: yes
-    sql: ${goods_sort} ;;
   }
 
   measure: total_sno {
