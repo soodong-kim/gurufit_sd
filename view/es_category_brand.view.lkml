@@ -13,12 +13,14 @@ view: es_category_brand {
 
   #카테고리코드(PRIMARY KEY)
   dimension: cate_cd {
+    label: "카테고리코드"
     type: string
     sql: ${TABLE}.cateCd ;;
   }
 
   #카테고리명
   dimension: cate_nm {
+    label: "카테고리명"
     type: string
     sql: ${TABLE}.cateNm ;;
   }

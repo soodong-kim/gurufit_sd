@@ -13,48 +13,56 @@ view: es_goods {
 
   #상품번호(PRIMARY KEY)
   dimension: goods_no {
+    label: "상품번호"
     type: number
     sql: ${TABLE}.goodsNo ;;
   }
 
   #상품이름
   dimension: goods_nm {
+    label: "상품이름"
     type: string
     sql: ${TABLE}.goodsNm ;;
   }
 
   #상품판매 여부(y/n)
   dimension: goods_sell_fl {
+    label: "상품판매여부(Y/N)"
     type: string
     sql: ${TABLE}.goodsSellFl ;;
   }
 
   #조회수
   dimension: hit_cnt {
+    label: "조회수"
     type: number
     sql: ${TABLE}.hitCnt ;;
   }
 
   #장바구니 수
   dimension: cart_cnt {
+    label: "장바구니수"
     type: number
     sql: ${TABLE}.cartCnt ;;
   }
 
   #관심상품 수
   dimension: wish_cnt {
+    label: "관심상품수"
     type: number
     sql: ${TABLE}.wishCnt ;;
   }
 
   #리뷰수
   dimension: review_cnt {
+    label: "리뷰수"
     type: number
     sql: ${TABLE}.reviewCnt ;;
   }
 
   #브랜드코드
   dimension: brand_cd {
+    label: "브랜드코드"
     type: string
     sql: ${TABLE}.brandCd ;;
   }

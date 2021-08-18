@@ -12,30 +12,35 @@ view: es_member {
 
   #주소
   dimension: address {
+    label: "주소"
     type: string
     sql: ${TABLE}.address ;;
   }
 
   #상세주소
   dimension: address_sub {
+    label: "상세주소"
     type: string
     sql: ${TABLE}.addressSub ;;
   }
 
   #우편번호
   dimension: zipcode {
+    label: "우편번호"
     type: zipcode
     sql: ${TABLE}.zipcode ;;
   }
 
   #우편번호(5자리)
   dimension: zonecode {
+    label: "우편번호(5자리)"
     type: string
     sql: ${TABLE}.zonecode ;;
   }
 
   #생년월일
   dimension_group: birth_dt {
+    label: "생년월일"
     type: time
     timeframes: [
       raw,
@@ -52,6 +57,7 @@ view: es_member {
 
   #가입일
   dimension_group: entry_dt {
+    label: "가입일"
     type: time
     timeframes: [
       raw,
@@ -67,6 +73,7 @@ view: es_member {
 
   #최종로그인
   dimension_group: last_login_dt {
+    label: "최종로그인"
     type: time
     timeframes: [
       raw,
@@ -82,6 +89,7 @@ view: es_member {
 
   #최종구매일
   dimension_group: last_sale_dt {
+    label: "최종구매일"
     type: time
     timeframes: [
       raw,
@@ -97,6 +105,7 @@ view: es_member {
 
   #등록일
   dimension_group: reg_dt {
+    label: "등록일"
     type: time
     timeframes: [
       raw,
@@ -112,84 +121,98 @@ view: es_member {
 
   #회원번호(primarykey)
   dimension: mem_no {
+    label: "회원번호"
     type: number
     sql: ${TABLE}.memNo ;;
   }
 
   #비밀번호
   dimension: mem_pw {
+    label: "비밀번호"
     type: string
     sql: ${TABLE}.memPw ;;
   }
 
   #닉네임
   dimension: nick_nm {
+    label: "닉네임"
     type: string
     sql: ${TABLE}.nickNm ;;
   }
 
   #아이디
   dimension: mem_id {
+    label: "아이디"
     type: string
     sql: ${TABLE}.memId ;;
   }
 
   #이름
   dimension: mem_nm {
+    label: "이름"
     type: string
     sql: ${TABLE}.memNm ;;
   }
 
   #핸드폰
   dimension: cell_phone {
+    label: "핸드폰"
     type: string
     sql: ${TABLE}.cellPhone ;;
   }
 
   #이메일
   dimension: email {
+    label: "E-mail"
     type: string
     sql: ${TABLE}.email ;;
   }
 
   #전화번호
   dimension: phone {
+    label: "전화번호"
     type: string
     sql: ${TABLE}.phone ;;
   }
 
   #성별
   dimension: sex_fl {
+    label: "성별"
     type: string
     sql: ${TABLE}.sexFl ;;
   }
 
   #가입경로
   dimension: entry_path {
+    label: "가입경로"
     type: string
     sql: ${TABLE}.entryPath ;;
   }
 
   #회원등급sno
   dimension: group_sno {
+    label: "회원등급"
     type: number
     sql: ${TABLE}.groupSno ;;
   }
 
   #본인확인방법
   dimension: rncheck {
+    label: "본인확인방법"
     type: string
     sql: ${TABLE}.rncheck ;;
   }
 
   #추천인등록여부
   dimension: recomm_fl {
+    label: "추천인등록여부"
     type: string
     sql: ${TABLE}.recommFl ;;
   }
 
   #추천인id
   dimension: recomm_id {
+    label: "추천인ID"
     type: string
     sql: ${TABLE}.recommId ;;
   }
