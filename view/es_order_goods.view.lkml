@@ -305,8 +305,14 @@ view: es_order_goods {
     sql: ${TABLE}.paymentDt ;;
   }
 
+
+
+  # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
+  # measures for numeric dimensions, but you can also add measures of many different types.
+  # Click on the type parameter to see all the options in the Quick Help panel on the right.
+
   #금액정보
-  dimension: netSales {
+  measure: netSales {
     type: number
     sql: SELECT CASE WHEN orderStatus in ('p1','g1','d1','d2','s1','b3','b1','b2','b4','r2','r1','z1','z2','z3','z4','z5','e1','e2','e3','e4','e5') and (orderStatus  in ('d1','d2','g1','p1','s1') and handleSno < 0)
                      THEN goodsPrice - IFNULL(enuri,0) - IFNULL(memberDcPrice,0) - IFNULL(divisionUseMileage,0) - IFNULL(divisionCouponOrderDcPrice,0) - IFNULL(couponGoodsDcPrice,0)
@@ -316,12 +322,6 @@ view: es_order_goods {
           WHERE orderStatus in ('p1','g1','d1','d2','s1','b3','b1','b2','b4','r2','r1','z1','z2','z3','z4','z5','e1','e2','e3','e4','e5') and (orderStatus  in ('d1','d2','g1','p1','s1') and handleSno < 0)
             AND brandCd =  ${TABLE}.brandCd ;;
   }
-
-
-
-  # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
-  # measures for numeric dimensions, but you can also add measures of many different types.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
   measure: count {
     type: count
