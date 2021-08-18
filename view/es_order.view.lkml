@@ -142,12 +142,14 @@ view: es_order {
 
   #영수증 신청여부
   dimension: receipt_fl {
+    label: "영수증신청여부"
     type: string
     sql: ${TABLE}.receiptFl ;;
   }
 
   #등록일
   dimension_group: reg_dt {
+    label: "등록일"
     type: time
     timeframes: [
       raw,
@@ -163,24 +165,28 @@ view: es_order {
 
   #메일/SMS 전송여부
   dimension: send_mail_sms_fl {
+    label: "메일/sms 전송여부"
     type: string
     sql: ${TABLE}.sendMailSmsFl ;;
   }
 
   #주문방법
   dimension: settle_kind {
+    label: "주문방법"
     type: string
     sql: ${TABLE}.settleKind ;;
   }
 
   #고객상담메모(관리자용메모)
   dimension: user_consult_memo {
+    label: "고객상담메모"
     type: string
     sql: ${TABLE}.userConsultMemo ;;
   }
 
   #고객요청번호(관리자용메모)
   dimension: user_request_memo {
+    label: "고객요청번호"
     type: string
     sql: ${TABLE}.userRequestMemo ;;
   }

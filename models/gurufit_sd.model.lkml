@@ -80,9 +80,17 @@ explore: es_order_goods {
     relationship: many_to_many
   }
 
+  join: es_goods {
+    type: left_outer
+    sql_on: ${es_order_goods.goods_no} = ${es_goods.goods_no};;
+    relationship: many_to_one
+
+  }
+
   #join: category_goods {
   #  type:  left_outer
-  #  sql_on: ${es_order_goods.goods_no} = category ;;
+  #  sql_on: ${es_order_goods.goods_no} = ${category_goods.cateCd} ;;
+  #  relationship: many_to_one
   #}
 
 }

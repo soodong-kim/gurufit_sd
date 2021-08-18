@@ -11,6 +11,9 @@ view: category_goods {
          , es_goods.wishCnt
          , es_goods.reviewCnt
          , es_goods.brandCd
+         , es_goods.brandcateCd
+         , es_goods.lesmoreDcRate
+         , es_goods.purchaseNo
          FROM es_categoryBrand
     LEFT JOIN es_goods
            ON es_categoryBrand.cateCd = es_goods.brandCd
@@ -20,10 +23,25 @@ view: category_goods {
       indexes: ["cateCd", "goodsNo"]
    }
 
-  dimension:cateCd{
+  dimension: cateCd {
+    label: "카테고리코드"
     type: string
     sql: ${TABLE}.cateCd ;;
   }
+
+  dimension: cateNm {
+    label: "카테고리명"
+    type: string
+    sql: ${TABLE}.cateNm ;;
+  }
+
+  dimension: goodsNo {
+    label: "상품번호"
+    type: number
+    sql: ${TABLE}.goodsNo ;;
+  }
+
+
 
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;

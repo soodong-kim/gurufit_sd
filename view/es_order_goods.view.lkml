@@ -300,10 +300,123 @@ view: es_order_goods {
       week,
       month,
       quarter,
-      year
+      year,
+      hour
     ]
     sql: ${TABLE}.paymentDt ;;
   }
+
+
+
+##############################################################################################
+# 판매대금-이익금 계산을 위해 아래의 필드 추가
+# 1. 기본 할인 금액 -> basic_dc_price
+# 2. 타임세일 할인 금액 -> timesale_dc_price
+# 3. 이익금 = 순매출 - 아래의 판매대금(fee_price) - PG 수수료
+##############################################################################################
+  dimension: order_type {
+    hidden: yes
+    type: string
+    sql: CASE WHEN ${order_status}  in ('d1','d2','g1','p1','s1') and ${handle_sno} > 0 THEN '교환' else '일반' END ;;
+  }
+
+  dimension: dc_price_rate_hidden {
+    label: "임시"
+    type: number
+    sql: ${TABLE}.order_status ;;
+  }
+
+
+  dimension: fee_price {
+    description: "판매대금"
+    type: number
+    sql:
+    if((${order_status} in ("p1","g1","d1","d2","s1","b3","b1","b2","b4","r2","r1","e1","e2","e3","e4","e5")) and (${order_type}='일반'),
+    case
+    when ${es_goods.purchase_no}='100009' and ${es_goods.brandcate_cd}='GB' and ${dc_price_rate_hidden}<0.2 and ${payment_dt_date} < '2019-09-01'
+    then ${fixed_price}*0.55
+    when ${es_goods.purchase_no}='100009' and ${es_goods.brandcate_cd}='GB' and ${dc_price_rate_hidden}<0.2 and ${payment_dt_date} >= '2019-09-01'
+    then ${fixed_price}*0.52
+    when ${es_goods.purchase_no}='100009' and ${es_goods.brandcate_cd}='GB' and ${dc_price_rate_hidden}<0.4 and ${dc_price_rate_hidden}>=0.2 and ${payment_dt_date} < TIMESTAMP('2019-12-31 08:00')
+    then ${fixed_price}*0.5
+    when ${es_goods.purchase_no}='100009' and ${es_goods.brandcate_cd}='GB' and ${dc_price_rate_hidden}<0.4 and ${dc_price_rate_hidden}>=0.2 and ${payment_dt_date} >= TIMESTAMP('2019-12-31 08:00')
+    then ${fixed_price}*0.47
+    when ${es_goods.purchase_no}='100009' and ${es_goods.brandcate_cd}='GB' and ${dc_price_rate_hidden}>=0.4 and ${payment_dt_hour} < TIMESTAMP('2019-10-31 08:00')
+    then ${fixed_price}*0.35
+    when ${es_goods.purchase_no}='100009' and ${es_goods.brandcate_cd}='GB' and ${dc_price_rate_hidden}>=0.4 and ${payment_dt_hour} >= TIMESTAMP('2019-10-31 08:00')
+    then ${fixed_price}*0.25
+    when ${es_goods.purchase_no}='100009' and ${es_goods.brandcate_cd}='KB' and ${dc_price_rate_hidden}<0.2 and ${payment_dt_date} < '2019-09-01'
+    then ${fixed_price}*0.35
+    when ${es_goods.purchase_no}='100009' and ${es_goods.brandcate_cd}='KB' and ${dc_price_rate_hidden}<0.2 and ${payment_dt_date} >= '2019-09-01'
+    then ${fixed_price}*0.36
+    when ${es_goods.purchase_no}='100009' and ${es_goods.brandcate_cd}='KB' and ${dc_price_rate_hidden}<0.4 and ${dc_price_rate_hidden}>=0.2 and ${payment_dt_date} < TIMESTAMP('2019-12-31 08:00')
+    then ${fixed_price}*0.3
+    when ${es_goods.purchase_no}='100009' and ${es_goods.brandcate_cd}='KB' and ${dc_price_rate_hidden}<0.4 and ${dc_price_rate_hidden}>=0.2 and ${payment_dt_date} >= TIMESTAMP('2019-12-31 08:00')
+    then ${fixed_price}*0.27
+    when ${es_goods.purchase_no}='100009' and ${es_goods.brandcate_cd}='KB' and ${dc_price_rate_hidden}>=0.4 and ${payment_dt_hour} < TIMESTAMP('2019-10-31 08:00')
+    then ${fixed_price}*0.2
+    when ${es_goods.purchase_no}='100009' and ${es_goods.brandcate_cd}='KB' and ${dc_price_rate_hidden}>=0.4 and ${payment_dt_hour}>= TIMESTAMP('2019-10-31 08:00')
+    then ${fixed_price}*0.15
+    when ${es_goods.purchase_no} in ('100007','100003') and ${dc_price_rate_hidden}<0.1
+    then (${goods_price}-${division_coupon_order_dc_price}-${coupon_goods_dc_price})*0.7
+    when ${es_goods.purchase_no} in ('100007','100003') and ${dc_price_rate_hidden}>=0.1 and ${dc_price_rate_hidden}<0.2
+    then (${goods_price}-${division_coupon_order_dc_price}-${coupon_goods_dc_price})*0.725
+    when ${es_goods.purchase_no} in ('100007','100003') and ${dc_price_rate_hidden}>=0.2
+    then (${goods_price}-${division_coupon_order_dc_price}-${coupon_goods_dc_price})*0.75
+    when ${es_goods.purchase_no}='100005' and ${dc_price_rate_hidden}<=0.2
+    then (${goods_price}-${division_coupon_order_dc_price}-${coupon_goods_dc_price})*0.7
+    when ${es_goods.purchase_no}='100005' and ${dc_price_rate_hidden}>0.2 and ${dc_price_rate_hidden}<=0.4
+    then (${goods_price}-${division_coupon_order_dc_price}-${coupon_goods_dc_price})*0.72
+    when ${es_goods.purchase_no}='100005' and ${dc_price_rate_hidden}>0.4
+    then (${goods_price}-${division_coupon_order_dc_price}-${coupon_goods_dc_price})*0.75
+    when ${es_goods.purchase_no} in ('100010','100004','100014','100015')
+    then (${goods_price}-${division_coupon_order_dc_price}-${coupon_goods_dc_price})*0.7
+    when ${es_goods.purchase_no}='100006'
+    then (${goods_price}-${division_coupon_order_dc_price}-${coupon_goods_dc_price})*0.72
+    when ${es_goods.purchase_no}='100008'
+    then (${goods_price}-${division_coupon_order_dc_price}-${coupon_goods_dc_price})*0.45
+    when ${es_goods.purchase_no}='100011'
+    then (${goods_price}-${division_coupon_order_dc_price}-${coupon_goods_dc_price})*0.75
+    when ${es_goods.purchase_no}='100012'
+    then (${goods_price}-${division_coupon_order_dc_price}-${coupon_goods_dc_price})*0.70
+    when ${es_goods.purchase_no}='100013'
+    then (${goods_price}-${division_coupon_order_dc_price}-${coupon_goods_dc_price})*0.78
+    when ${es_goods.purchase_no}='100021'
+    then (${goods_price}-${division_coupon_order_dc_price}-${coupon_goods_dc_price})*0.6
+    else null
+    end,
+    null);;
+  }
+
+  #dimension: dc_price_rate_hidden {
+  #  hidden: yes
+  #  description: "이익률 산출용 할인률"
+  #  type: number
+  #  sql:
+  #  case when ${es_goods.purchase_no}='100009'
+  #  then ${es_goods.lesmore_dc_rate}/100
+  #  when ${es_goods.purchase_no} in ('100003','100004','100005','100006','100007','100008','100010','100011','100012','100013','100014','100015')
+  #  then (${coupon_goods_dc_price}+${division_coupon_order_dc_price}+${basic_dc_price}+${timesale_dc_price})/${fixed_price}
+  #  when ${es_goods.purchase_no}='100001'
+  #  then (${coupon_goods_dc_price}+${division_coupon_order_dc_price}+${basic_dc_price}+${timesale_dc_price}+${division_use_mileage})/${fixed_price}
+  #  else null
+  #  end;;
+  #}
+
+  #dimension: payment_dt_hour_tier {
+  #  hidden: yes
+  #  description: "주문 시간 Tier"
+  #  type: string
+  #  sql: case when ${payment_dt_hour_of_day}>=1 and ${payment_dt_hour_of_day}<=6 then "1새벽(1~6)"
+  #    when ${payment_dt_hour_of_day}>=7 and ${payment_dt_hour_of_day}<=12 then "2오전(7~12)"
+  #    when ${payment_dt_hour_of_day}>=13 and ${payment_dt_hour_of_day}<=18 then "3오후(13~~18)"
+  #    when (${payment_dt_hour_of_day}>=19 and ${payment_dt_hour_of_day}<=23) or ${payment_dt_hour_of_day}=0 then "4저녁(19~24)"
+  #  else "5알수없음"
+  #  end;;
+  #}
+
+##############################################################################################
+
 
 
 
