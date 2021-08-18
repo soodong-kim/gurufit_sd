@@ -16,7 +16,7 @@ view: category_goods {
            ON es_categoryBrand.cateCd = es_goods.brandCd
         LIMIT 3000
        ;;
-      persist_for: "24 hours"
+      persist_for: "1 hours"
       indexes: ["cateCd", "goodsNo"]
    }
 
