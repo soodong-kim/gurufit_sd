@@ -9,6 +9,7 @@ include: "/view/**/es_member.view"
 include: "/view/**/es_order.view"
 include: "/view/**/es_order_goods.view"
 include: "/view/**/es_order_info.view"
+include: "/view/**/category_goods.view"
 
 
 datagroup: gurufit_sd_default_datagroup {
@@ -78,5 +79,10 @@ explore: es_order_goods {
     sql_on: ${es_order_goods.goods_no} =  ${es_goods_link_category.goods_no};;
     relationship: many_to_many
   }
+
+  #join: category_goods {
+  #  type:  left_outer
+  #  sql_on: ${es_order_goods.goods_no} = category ;;
+  #}
 
 }

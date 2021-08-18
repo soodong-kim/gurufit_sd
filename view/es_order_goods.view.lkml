@@ -256,6 +256,7 @@ view: es_order_goods {
 
   #수정일
   dimension_group: mod_dt {
+    label: "수정일"
     type: time
     timeframes: [
       raw,
@@ -268,6 +269,23 @@ view: es_order_goods {
     ]
     sql: ${TABLE}.modDt ;;
   }
+
+  #입금일자 : payment_dt
+  dimension_group: payment_dt {
+    label: "입금일자"
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.paymentDt ;;
+  }
+
 
 
   # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
