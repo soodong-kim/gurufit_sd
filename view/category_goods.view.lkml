@@ -20,6 +20,11 @@ view: category_goods {
       indexes: ["cateCd", "goodsNo"]
    }
 
+  dimension:cateCd{
+    type: string
+    sql: ${TABLE}.cateCd ;;
+  }
+
   # # You can specify the table name if it's different from the view name:
   # sql_table_name: my_schema_name.tester ;;
   #
