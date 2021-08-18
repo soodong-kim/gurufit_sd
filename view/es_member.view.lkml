@@ -219,54 +219,63 @@ view: es_member {
 
   #로그인 횟수
   dimension: login_cnt {
+    label: "로그인횟수"
     type: number
     sql: ${TABLE}.loginCnt ;;
   }
 
   #로그인 제한
   dimension: login_limit {
+    label: "로그인제한"
     type: string
     sql: ${TABLE}.loginLimit ;;
   }
 
   #최종로그인 IP
   dimension: last_login_ip {
+    label: "최종로그인IP"
     type: string
     sql: ${TABLE}.lastLoginIp ;;
   }
 
   #적립금
   dimension: mileage {
+    label: "적립금"
     type: number
     sql: ${TABLE}.mileage ;;
   }
 
   #총구매금액
   dimension: sale_amt {
+    label: "총구매금액"
     type: number
     sql: ${TABLE}.saleAmt ;;
   }
 
   #구매횟수
   dimension: sale_cnt {
+    label: "구매횟수"
     type: number
     sql: ${TABLE}.saleCnt ;;
   }
 
   #예치금
   dimension: deposit {
+    label: "예치금"
     type: number
     sql: ${TABLE}.deposit ;;
   }
 
   #휴먼회원여부
   dimension: sleep_fl {
+    label: "휴먼회원여부"
     type: string
     sql: ${TABLE}.sleepFl ;;
   }
 
   #성인여부인증시간
   dimension_group: adult_confirm_dt {
+    label: "성인여부인증시간"
     type: time
     timeframes: [
       raw,
@@ -282,18 +291,21 @@ view: es_member {
 
   #성인여부
   dimension: adult_fl {
+    label: "성인여부"
     type: string
     sql: ${TABLE}.adultFl ;;
   }
 
   #승인여부
   dimension: app_fl {
+    label: "승인여부"
     type: string
     sql: ${TABLE}.appFl ;;
   }
 
   #등급수정일
   dimension_group: group_mod_dt {
+    label: "등급수정일"
     type: time
     timeframes: [
       raw,
@@ -309,6 +321,7 @@ view: es_member {
 
   #등급유효일
   dimension_group: group_valid_dt {
+    label: "등급유효일"
     type: time
     timeframes: [
       raw,
@@ -324,6 +337,7 @@ view: es_member {
 
   #비밀번호변경안내일
   dimension_group: guide_password_dt {
+    label: "비밀번호변경안내일"
     type: time
     timeframes: [
       raw,
@@ -339,6 +353,7 @@ view: es_member {
 
   #가입승인일
   dimension_group: approval_dt {
+    label: "가입승인일"
     type: time
     timeframes: [
       raw,
@@ -354,6 +369,7 @@ view: es_member {
 
   #생일이벤트여부-sms, 쿠폰 등 처리일자
   dimension_group: birth_event_fl {
+    label: "생일이벤트여부"
     type: time
     timeframes: [
       raw,
@@ -370,6 +386,7 @@ view: es_member {
 
   #비밀번호 변경일
   dimension_group: change_password_dt {
+    label: "비밀번호변경일"
     type: time
     timeframes: [
       raw,
@@ -385,6 +402,7 @@ view: es_member {
 
   #가입혜택지급일
   dimension_group: entry_benefit_offer_dt {
+    label: "가입혜택지급일"
     type: time
     timeframes: [
       raw,
@@ -400,6 +418,7 @@ view: es_member {
 
   #수정일
   dimension_group: mod_dt {
+    label: "수정일"
     type: time
     timeframes: [
       raw,
@@ -415,36 +434,42 @@ view: es_member {
 
   #중복가입확인정보
   dimension: dupeinfo {
+    label: "중복가입확인정보"
     type: string
     sql: ${TABLE}.dupeinfo ;;
   }
 
   #결혼여부
   dimension: marri_fl {
+    label: "결혼여부"
     type: string
     sql: ${TABLE}.marriFl ;;
   }
 
   #개인정보유효기간
   dimension: expiration_fl {
+    label: "개인정보유효기간"
     type: string
     sql: ${TABLE}.expirationFl ;;
   }
 
   #관심분야
   dimension: interest {
+    label: "관심분야"
     type: string
     sql: ${TABLE}.interest ;;
   }
 
   #종목
   dimension: item {
+    label: "종목"
     type: string
     sql: ${TABLE}.item ;;
   }
 
   #회원구분
   dimension: member_fl {
+    label: "회원구분"
     type: string
     sql: ${TABLE}.memberFl ;;
   }
@@ -454,6 +479,7 @@ view: es_member {
 
  #결혼일
   dimension_group: marri {
+    label: "결혼일"
     type: time
     hidden: yes
     timeframes: [

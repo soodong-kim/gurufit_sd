@@ -13,102 +13,119 @@ view: es_order_goods {
 
   #주문번호
   dimension: order_no {
+    label: "주문번호"
     type: string
     sql: ${TABLE}.orderNo ;;
   }
 
   #주문상태
   dimension: order_status {
+    label: "주문상태"
     type: string
     sql: ${TABLE}.orderStatus ;;
   }
 
   #일련번호(PRIMARY KEY)
   dimension: sno {
+    label: "일련번호"
     type: number
     sql: ${TABLE}.sno ;;
   }
 
   #주문코드(순서)
   dimension: order_cd {
+    label: "주문코드"
     type: number
     sql: ${TABLE}.orderCd ;;
   }
 
   #상품수량
   dimension: goods_cnt {
+    label: "상품수량"
     type: number
     sql: ${TABLE}.goodsCnt ;;
   }
 
   #브랜드코드
   dimension: brand_cd {
+    label: "브랜드코드"
     type: string
     sql: ${TABLE}.brandCd ;;
   }
 
   #카테고리코드
   dimension: cate_cd {
+    label: "카테고리코드"
     type: string
     sql: ${TABLE}.cateCd ;;
   }
 
   #상품코드
   dimension: goods_cd {
+    label: "상품코드"
     type: string
     sql: ${TABLE}.goodsCd ;;
   }
 
   #모델명
   dimension: goods_model_no {
+    label: "모델명"
     type: string
     sql: ${TABLE}.goodsModelNo ;;
   }
 
   #상품명
   dimension: goods_nm {
+    label: "상품명"
     type: string
     sql: ${TABLE}.goodsNm ;;
   }
 
   #타임세일여부(y/n)
   dimension: time_sale_fl {
+    label: "타임세일여부(Y/N)"
     type: string
     sql: ${TABLE}.timeSaleFl ;;
   }
 
   #기준몰 상품명
   dimension: goods_nm_standard {
+    label: "기준몰상품명"
     type: string
     sql: ${TABLE}.goodsNmStandard ;;
   }
 
   #상품번호
   dimension: goods_no {
+    label: "상품번호"
     type: number
     sql: ${TABLE}.goodsNo ;;
   }
 
   #상품무게
   dimension: goods_weight {
+    label: "상품무게"
     type: number
     sql: ${TABLE}.goodsWeight ;;
   }
 
   #정가
   dimension: fixed_price {
+    label: "정가"
     type: number
     sql: ${TABLE}.fixedPrice ;;
   }
 
   #상품가격
   dimension: goods_price {
+    label: "상품가격"
     type: number
     sql: ${TABLE}.goodsPrice ;;
   }
 
   #상품쿠폰 할인금액
   dimension: coupon_goods_dc_price {
+    label: "상품쿠폰할인금액"
     type: number
     sql: ${TABLE}.couponGoodsDcPrice ;;
   }
@@ -157,12 +174,14 @@ view: es_order_goods {
 
   #상품적립금
   dimension: goods_mileage {
+    label: "상품적립금"
     type: number
     sql: ${TABLE}.goodsMileage ;;
   }
 
   #회원적립금
   dimension: member_mileage {
+    label: "회원적립금"
     type: number
     sql: ${TABLE}.memberMileage ;;
   }
