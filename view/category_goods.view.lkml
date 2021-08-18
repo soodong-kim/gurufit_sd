@@ -41,6 +41,28 @@ view: category_goods {
     sql: ${TABLE}.goodsNo ;;
   }
 
+ ##############################################################################################
+ # 판매대금-이익금 계산을 위해 아래의 필드 추가
+ ##############################################################################################
+
+  dimension: brandcate_cd {
+    hidden: yes
+    type: string
+    sql: ${TABLE}.brandcateCd ;;
+  }
+
+  dimension: lesmore_dc_rate {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.lesmoreDcRate ;;
+  }
+
+  dimension: purchase_no {
+    hidden: yes
+    type: number
+    sql: ${TABLE}.purchaseNo ;;
+  }
+
 
 
   # # You can specify the table name if it's different from the view name:

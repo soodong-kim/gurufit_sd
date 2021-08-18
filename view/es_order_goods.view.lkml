@@ -328,6 +328,7 @@ view: es_order_goods {
 
 
   dimension: fee_price {
+
     description: "판매대금"
     type: number
     sql:
@@ -352,7 +353,7 @@ view: es_order_goods {
     when ${es_goods.purchase_no}='100009' and ${es_goods.brandcate_cd}='KB' and ${dc_price_rate_hidden}<0.4 and ${dc_price_rate_hidden}>=0.2 and ${payment_dt_date} < TIMESTAMP('2019-12-31 08:00')
     then ${fixed_price}*0.3
     when ${es_goods.purchase_no}='100009' and ${es_goods.brandcate_cd}='KB' and ${dc_price_rate_hidden}<0.4 and ${dc_price_rate_hidden}>=0.2 and ${payment_dt_date} >= TIMESTAMP('2019-12-31 08:00')
-    then ${fixed_price}*0.27
+     then ${fixed_price}*0.27
     when ${es_goods.purchase_no}='100009' and ${es_goods.brandcate_cd}='KB' and ${dc_price_rate_hidden}>=0.4 and ${payment_dt_hour} < TIMESTAMP('2019-10-31 08:00')
     then ${fixed_price}*0.2
     when ${es_goods.purchase_no}='100009' and ${es_goods.brandcate_cd}='KB' and ${dc_price_rate_hidden}>=0.4 and ${payment_dt_hour}>= TIMESTAMP('2019-10-31 08:00')
@@ -387,6 +388,7 @@ view: es_order_goods {
     end,
     null);;
   }
+
 
   #dimension: dc_price_rate_hidden {
   #  hidden: yes
