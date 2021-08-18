@@ -20,50 +20,63 @@ persist_with: gurufit_sd_default_datagroup
 # # Select the views that should be a part of this model,
 # # and define the joins that connect them together.
 #
-# explore: order_items {
-#   join: orders {
-#     relationship: many_to_one
-#     sql_on: ${orders.id} = ${order_items.order_id} ;;
-#   }
-#
-#   join: users {
-#     relationship: many_to_one
-#     sql_on: ${users.id} = ${orders.user_id} ;;
-#   }
-# }
 
+#explore:  es_member{
+#  join: es_order {
+#    type: left_outer
+#    sql_on: ${es_member.mem_no} = ${es_order.mem_no} ;;
+#    relationship: one_to_many
+#  }
 
-explore:  es_member{
+#  join: es_order_goods {
+#    type: left_outer
+#    sql_on: ${es_order.order_no} = ${es_order_goods.order_no};;
+#    relationship: one_to_many
+#  }
+#}
+
+#explore: es_order_info {
+#  join: es_order_goods {
+#    type: left_outer
+#    sql_on: ${es_order_info.order_no} = ${es_order_goods.order_no} ;;
+#    relationship: one_to_many
+#  }
+
+#  join: es_goods {
+#    type: left_outer
+#    sql_on: ${es_order_goods.goods_no} = ${es_goods.goods_no} ;;
+#    relationship:  many_to_one
+#  }
+
+#  join: es_goods_link_category {
+#    type: left_outer
+#    sql_on: ${es_goods.goods_no} = ${es_goods_link_category.goods_no} ;;
+#    relationship: one_to_many
+#  }
+
+explore: es_order_goods {
   join: es_order {
     type: left_outer
-    sql_on: ${es_member.mem_no} = ${es_order.mem_no} ;;
-    relationship: one_to_many
+    sql_on: ${es_order_goods.order_no}  = ${es_order.order_no};;
+    relationship: many_to_one
   }
 
-  join: es_order_goods {
+  join: es_member {
     type: left_outer
-    sql_on: ${es_order.order_no} = ${es_order_goods.order_no};;
-    relationship: one_to_many
-  }
-}
-
-explore: es_order_info {
-  join: es_order_goods {
-    type: left_outer
-    sql_on: ${es_order_info.order_no} = ${es_order_goods.order_no} ;;
-    relationship: one_to_many
+    sql_on: ${es_order.mem_no}  = ${es_member.mem_no};;
+    relationship: many_to_one
   }
 
-  join: es_goods {
+  join:  es_order_info{
     type: left_outer
-    sql_on: ${es_order_goods.goods_no} = ${es_goods.goods_no} ;;
-    relationship:  many_to_one
+    sql_on: ${es_order_goods.order_no} = ${es_order_info.order_no};;
+    relationship: many_to_one
   }
 
   join: es_goods_link_category {
     type: left_outer
-    sql_on: ${es_goods.goods_no} = ${es_goods_link_category.goods_no} ;;
-    relationship: one_to_many
+    sql_on: ${es_order_goods.goods_no} =  ${es_goods_link_category.goods_no};;
+    relationship: many_to_many
   }
 
 }
