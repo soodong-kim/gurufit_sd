@@ -132,42 +132,49 @@ view: es_order_goods {
 
   #주문할인 금액의 안분된 주문쿠폰
   dimension: division_coupon_order_dc_price {
+    label: "할인안분된주문쿠폰"
     type: number
     sql: ${TABLE}.divisionCouponOrderDcPrice ;;
   }
 
   #주문할인 금액의 안분된 적립금
   dimension: division_use_mileage {
+    label: "할인안분된적립금"
     type: number
     sql: ${TABLE}.divisionUseMileage ;;
   }
 
   #에누리할인
   dimension: enuri {
+    label: "에누리할인"
     type: number
     sql: ${TABLE}.enuri ;;
   }
 
   #상품할인금액
   dimension: goods_dc_price {
+    label: "상품할인금액"
     type: number
     sql: ${TABLE}.goodsDcPrice ;;
   }
 
   #회원할인금액
   dimension: member_dc_price {
+    label: "회원할인금액"
     type: number
     sql: ${TABLE}.memberDcPrice ;;
   }
 
   #상품쿠폰적립 적립금
   dimension: coupon_goods_mileage {
+    label: "상품쿠폰적립금"
     type: number
     sql: ${TABLE}.couponGoodsMileage ;;
   }
 
   #주문금액의 안분된 적립금
   dimension: division_coupon_order_mileage {
+    label: "안분된적립금"
     type: number
     sql: ${TABLE}.divisionCouponOrderMileage ;;
   }
@@ -188,18 +195,21 @@ view: es_order_goods {
 
   #적립금 지급여부
   dimension: plus_mileage_fl {
+    label: "적립금지급여부"
     type: string
     sql: ${TABLE}.plusMileageFl ;;
   }
 
   #환불/반품/교환처리 sno
   dimension: handle_sno {
+    label: "환불/반품/교환처리"
     type: number
     sql: ${TABLE}.handleSno ;;
   }
 
   #취소완료일자
   dimension_group: cancel_dt {
+    label: "취소완료일자"
     type: time
     timeframes: [
       raw,
@@ -215,6 +225,7 @@ view: es_order_goods {
 
   #배송완료일자
   dimension_group: delivery_complete_dt {
+    label: "배송완료일자"
     type: time
     timeframes: [
       raw,
@@ -230,6 +241,7 @@ view: es_order_goods {
 
   #배송일자
   dimension_group: delivery_dt {
+    label: "배송일자"
     type: time
     timeframes: [
       raw,
@@ -245,6 +257,7 @@ view: es_order_goods {
 
   #구매확정일자
   dimension_group: finish_dt {
+    label: "구매확정일자"
     type: time
     timeframes: [
       raw,
@@ -260,6 +273,7 @@ view: es_order_goods {
 
   #등록일
   dimension_group: reg_dt {
+    label: "등록일"
     type: time
     timeframes: [
       raw,
