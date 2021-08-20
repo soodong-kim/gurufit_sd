@@ -455,7 +455,7 @@ dimension: payment_dt_hour_tier {
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
   #금액정보
-  measure: netSales {
+  dimension: netSales {
     description: "금액정보"
     type: number
     sql:
