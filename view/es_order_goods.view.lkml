@@ -315,7 +315,8 @@ view: es_order_goods {
       month,
       quarter,
       year,
-      hour
+      hour,
+      hour_of_day
     ]
     sql: ${TABLE}.paymentDt ;;
   }
@@ -328,17 +329,31 @@ view: es_order_goods {
 # 2. 타임세일 할인 금액 -> timesale_dc_price
 # 3. 이익금 = 순매출 - 아래의 판매대금(fee_price) - PG 수수료
 ##############################################################################################
+  # group_label: "주문 정보"
   dimension: order_type {
-    hidden: yes
+    description: "주문 유형(일반/교환)"
     type: string
-    sql: CASE WHEN ${order_status}  in ('d1','d2','g1','p1','s1') and ${handle_sno} > 0 THEN '교환' else '일반' END ;;
+    sql:
+    case when ${handle_sno}>0 and ${order_status} in ("p1","g1","d1","d2","s1") then "교환"
+    else "일반"
+    end;;
   }
 
-  dimension: dc_price_rate_hidden {
-    label: "임시"
+  #기본할인금액
+  dimension: basic_dc_price {
+    description: "기본할인금액"
     type: number
-    sql: ${TABLE}.order_status ;;
+    sql: case when ${time_sale_fl} = "N" then ${fixed_price} - ${goods_price}  else 0 end;;
   }
+
+
+  #타임세일할인금액
+  dimension: timesale_dc_price {
+  description: "타임세일할인금액"
+  type: number
+  sql: case when ${time_sale_fl} = "Y" then ${fixed_price} - ${goods_price}  else 0 end;;
+  }
+
 
 
   dimension: fee_price {
@@ -404,33 +419,32 @@ view: es_order_goods {
   }
 
 
-  #dimension: dc_price_rate_hidden {
-  #  hidden: yes
-  #  description: "이익률 산출용 할인률"
-  #  type: number
-  #  sql:
-  #  case when ${es_goods.purchase_no}='100009'
-  #  then ${es_goods.lesmore_dc_rate}/100
-  #  when ${es_goods.purchase_no} in ('100003','100004','100005','100006','100007','100008','100010','100011','100012','100013','100014','100015')
-  #  then (${coupon_goods_dc_price}+${division_coupon_order_dc_price}+${basic_dc_price}+${timesale_dc_price})/${fixed_price}
-  #  when ${es_goods.purchase_no}='100001'
-  #  then (${coupon_goods_dc_price}+${division_coupon_order_dc_price}+${basic_dc_price}+${timesale_dc_price}+${division_use_mileage})/${fixed_price}
-  #  else null
-  #  end;;
-  #}
+ dimension: dc_price_rate_hidden {
+  hidden: yes
+  description: "이익률 산출용 할인률"
+  type: number
+  sql:
+    case when ${es_goods.purchase_no}='100009'
+    then ${es_goods.lesmore_dc_rate}/100
+    when ${es_goods.purchase_no} in ('100003','100004','100005','100006','100007','100008','100010','100011','100012','100013','100014','100015')
+    then (${coupon_goods_dc_price}+${division_coupon_order_dc_price}+${basic_dc_price}+${timesale_dc_price})/${fixed_price}
+    when ${es_goods.purchase_no}='100001'
+    then (${coupon_goods_dc_price}+${division_coupon_order_dc_price}+${basic_dc_price}+${timesale_dc_price}+${division_use_mileage})/${fixed_price}
+    else null
+    end;;
+}
 
-  #dimension: payment_dt_hour_tier {
-  #  hidden: yes
-  #  description: "주문 시간 Tier"
-  #  type: string
-  #  sql: case when ${payment_dt_hour_of_day}>=1 and ${payment_dt_hour_of_day}<=6 then "1새벽(1~6)"
-  #    when ${payment_dt_hour_of_day}>=7 and ${payment_dt_hour_of_day}<=12 then "2오전(7~12)"
-  #    when ${payment_dt_hour_of_day}>=13 and ${payment_dt_hour_of_day}<=18 then "3오후(13~~18)"
-  #    when (${payment_dt_hour_of_day}>=19 and ${payment_dt_hour_of_day}<=23) or ${payment_dt_hour_of_day}=0 then "4저녁(19~24)"
-  #  else "5알수없음"
-  #  end;;
-  #}
-
+dimension: payment_dt_hour_tier {
+  hidden: yes
+  description: "주문 시간 Tier"
+  type: string
+  sql: case when ${payment_dt_hour_of_day}>=1 and ${payment_dt_hour_of_day}<=6 then "1새벽(1~6)"
+      when ${payment_dt_hour_of_day}>=7 and ${payment_dt_hour_of_day}<=12 then "2오전(7~12)"
+      when ${payment_dt_hour_of_day}>=13 and ${payment_dt_hour_of_day}<=18 then "3오후(13~~18)"
+      when (${payment_dt_hour_of_day}>=19 and ${payment_dt_hour_of_day}<=23) or ${payment_dt_hour_of_day}=0 then "4저녁(19~24)"
+    else "5알수없음"
+    end;;
+}
 ##############################################################################################
 
 
