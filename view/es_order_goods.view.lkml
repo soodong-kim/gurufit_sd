@@ -344,7 +344,7 @@ view: es_order_goods {
     description: "기본할인금액"
     type: number
     sql: case when ${time_sale_fl} = "N" then ${fixed_price} - ${goods_price}  else 0 end;;
-    value_format: "$0.00"
+    #value_format: "$0.00"
   }
 
 
@@ -353,7 +353,7 @@ view: es_order_goods {
   description: "타임세일할인금액"
   type: number
   sql: case when ${time_sale_fl} = "Y" then ${fixed_price} - ${goods_price}  else 0 end;;
-  value_format: "$0.00"
+  #value_format: "$0.00"
   }
 
 
@@ -453,16 +453,18 @@ dimension: payment_dt_hour_tier {
   dimension: netSales {
     label: "금액정보"
     description: "금액정보"
-    value_format: "$0.00"
+    #value_format: "$0.00"
     type: number
-    sql:  ${goods_price}  - ${enuri} - ${member_dc_price} - ${division_use_mileage} - ${division_coupon_order_dc_price} - ${coupon_goods_dc_price} ;;
+    sql:  case when ( ${goods_price}  - ${enuri} - ${member_dc_price} - ${division_use_mileage} - ${division_coupon_order_dc_price} - ${coupon_goods_dc_price} ) > 0
+         then ${goods_price}  - ${enuri} - ${member_dc_price} - ${division_use_mileage} - ${division_coupon_order_dc_price} - ${coupon_goods_dc_price}
+         else 0 end;;
   }
 
   #순매출
   dimension: sunSales {
     label: "순매출"
     type: number
-    value_format: "$0.00"
+    #value_format: "$0.00"
     sql: case when ${order_status} in ('p1','g1','d1','d2','s1','b3','b1','b2','b4','r2','r1','z1','z2','z3','z4','z5','e1','e2','e3','e4','e5') and (${order_status}  in ('d1','d2','g1','p1','s1') and ${handle_sno} < 0 - (${order_type}='일반'))
                      THEN ${goods_price} - IFNULL(${enuri},0) - IFNULL(${member_dc_price},0) - IFNULL(${division_use_mileage} ,0) - IFNULL(${division_coupon_order_dc_price} ,0) - IFNULL(${coupon_goods_dc_price},0)
                      else 0 end ;;
