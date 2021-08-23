@@ -458,7 +458,7 @@ view: es_order_goods {
   dimension: discount_price{
   label: "할인금액"
   type: number
-  sql: ${enuri} +  ${timesale_dc_price} + ${member_dc_price} + ${division_use_mileage} + ${division_coupon_order_dc_price} + ${coupon_goods_dc_price} + ${basic_dc_price}};;
+  sql: ${enuri} +  ${timesale_dc_price} + ${member_dc_price} + ${division_use_mileage} + ${division_coupon_order_dc_price} + ${coupon_goods_dc_price} + ${basic_dc_price};;
   }
 
 
