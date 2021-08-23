@@ -36,6 +36,11 @@ view: es_member {
     label: "우편번호(5자리)"
     type: string
     sql: ${TABLE}.zonecode ;;
+    link: {
+      label: "Google Search"
+      url: "https://www.epost.go.kr/search.RetrieveIntegrationNewZipCdList.comm?q={{ value }}"
+      icon_url: "https://www.epost.go.kr/images/comm/widget/epost_48.ico"
+    }
   }
 
   #생년월일
