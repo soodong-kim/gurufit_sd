@@ -106,6 +106,7 @@ view: es_order {
   #주문번호(PRIMARY KEY)
   dimension: order_no {
     label: "주문번호"
+    primary_key: yes
     type: string
     sql: ${TABLE}.orderNo ;;
   }
@@ -197,7 +198,7 @@ view: es_order {
 
   measure: count {
     type: count
-    drill_fields: []
+    drill_fields: [order_no, payment_dt_month]
   }
 
   # These sum and average measures are hidden by default.

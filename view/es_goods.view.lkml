@@ -14,6 +14,7 @@ view: es_goods {
   #상품번호(PRIMARY KEY)
   dimension: goods_no {
     label: "상품번호"
+    primary_key: yes
     type: number
     sql: ${TABLE}.goodsNo ;;
   }
@@ -101,7 +102,7 @@ view: es_goods {
 
   measure: count {
     type: count
-    drill_fields: []
+    drill_fields: [goods_no, goods_nm]
   }
 
   # These sum and average measures are hidden by default.
