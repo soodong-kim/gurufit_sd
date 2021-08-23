@@ -343,7 +343,8 @@ view: es_order_goods {
   dimension: netSales_price {
     label: "금액정보"
     description: "금액정보"
-    #value_format: "$0.00"
+    value_format : "0"
+    #value_format_name: ko_KR
     type: number
     sql:  case when ( ${goods_price}  - ${enuri} - ${member_dc_price} - ${division_use_mileage} - ${division_coupon_order_dc_price} - ${coupon_goods_dc_price} ) > 0
          then ${goods_price}  - ${enuri} - ${member_dc_price} - ${division_use_mileage} - ${division_coupon_order_dc_price} - ${coupon_goods_dc_price}
@@ -354,7 +355,8 @@ view: es_order_goods {
   dimension: sunSales_price {
     label: "순매출"
     type: number
-    #value_format: "$0.00"
+    value_format : "0"
+    #value_format_name: ko_KR
     sql: case when ${order_status} in ('p1','g1','d1','d2','s1','b3','b1','b2','b4','r2','r1','z1','z2','z3','z4','z5','e1','e2','e3','e4','e5') and (${order_status}  in ('d1','d2','g1','p1','s1') and ${handle_sno} < 0 - (${order_type}='일반'))
                      THEN ${goods_price} - IFNULL(${enuri},0) - IFNULL(${member_dc_price},0) - IFNULL(${division_use_mileage} ,0) - IFNULL(${division_coupon_order_dc_price} ,0) - IFNULL(${coupon_goods_dc_price},0)
                      else 0 end ;;
@@ -363,6 +365,8 @@ view: es_order_goods {
   dimension: fee_price {
     label: "판매대금"
     description: "판매대금"
+    value_format : "0"
+    #value_format_name: ko_KR
     type: number
     sql:
     if((${order_status} in ("p1","g1","d1","d2","s1","b3","b1","b2","b4","r2","r1","e1","e2","e3","e4","e5")) and (${order_type}='일반'),
@@ -425,6 +429,8 @@ view: es_order_goods {
   #PG 수수료
   dimension: pg_price {
     label: "PG수수료"
+    value_format : "0"
+    #value_format_name: ko_KR
     type: number
     sql: ${netSales_price} * 0.028 ;;
   }
@@ -432,6 +438,8 @@ view: es_order_goods {
   #이익금
   dimension: profit_price {
     label: "이익금"
+    value_format : "0"
+    #value_format_name: ko_KR
     type: number
     sql: ${sunSales_price} - ${fee_price} - ${pg_price} ;;
   }
@@ -440,23 +448,27 @@ view: es_order_goods {
   #기본할인금액
   dimension: basic_dc_price {
     description: "기본할인금액"
+    value_format : "0"
+    #value_format_name: ko_KR
     type: number
     sql: case when ${time_sale_fl} = "N" then ${fixed_price} - ${goods_price}  else 0 end;;
-    #value_format: "$0.00"
   }
 
 
   #타임세일할인금액
   dimension: timesale_dc_price {
   description: "타임세일할인금액"
+  value_format : "0"
+  #value_format_name: ko_KR
   type: number
   sql: case when ${time_sale_fl} = "Y" then ${fixed_price} - ${goods_price}  else 0 end;;
-  #value_format: "$0.00"
   }
 
   #할인금액(에누리할인 + 타임세일할인금액 + 회원할인금액 + 주문할인금액의안분된 적립금 + 주문할인금액의안분된 주문쿠폰 + 상품쿠폰 할인금액 + 기존 할인 금액
   dimension: discount_price{
   label: "할인금액"
+  value_format : "0"
+  #value_format_name: ko_KR
   type: number
   sql: ${enuri} +  ${timesale_dc_price} + ${member_dc_price} + ${division_use_mileage} + ${division_coupon_order_dc_price} + ${coupon_goods_dc_price} + ${basic_dc_price};;
   }

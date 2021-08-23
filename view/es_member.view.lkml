@@ -60,6 +60,24 @@ view: es_member {
     sql: ${TABLE}.birthDt ;;
   }
 
+   #나이
+  dimension: age{
+    label: "나이"
+    type: number
+    sql: ${created_year} - ${birth_dt_year} ;;
+  }
+
+  #timestamp
+  dimension_group: created {
+    label: "현재일자"
+    type: time
+    timeframes: [
+      year
+    ]
+    sql: SYSDATE();;
+  }
+
+
   #가입일
   dimension_group: entry_dt {
     label: "가입일"
