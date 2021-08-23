@@ -151,6 +151,7 @@ view: es_member {
 
   #회원번호(primarykey)
   dimension: mem_no {
+    primary_key: yes
     label: "회원번호"
     type: number
     sql: ${TABLE}.memNo ;;
@@ -531,7 +532,7 @@ view: es_member {
 
   measure: count {
     type: count
-    drill_fields: []
+    drill_fields: [mem_no, age, age_tier]
   }
 
   # These sum and average measures are hidden by default.
