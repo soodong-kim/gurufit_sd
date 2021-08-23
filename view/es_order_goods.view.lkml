@@ -450,7 +450,7 @@ dimension: payment_dt_hour_tier {
 ##############################################################################################
 
   #금액정보
-  dimension: netSales {
+  dimension: netSales_price {
     label: "금액정보"
     description: "금액정보"
     #value_format: "$0.00"
@@ -461,7 +461,7 @@ dimension: payment_dt_hour_tier {
   }
 
   #순매출
-  dimension: sunSales {
+  dimension: sunSales_price {
     label: "순매출"
     type: number
     #value_format: "$0.00"
@@ -470,7 +470,11 @@ dimension: payment_dt_hour_tier {
                      else 0 end ;;
   }
 
-
+ #PG 수수료
+ dimension: pg_price {
+   label: "PG수수료"
+   sql: ${netSales_price} * 0.028 ;;
+ }
 
 
 
