@@ -359,7 +359,7 @@ view: es_order_goods {
 
 
   dimension: fee_price {
-
+    label: "판매대금"
     description: "판매대금"
     type: number
     sql:
@@ -451,12 +451,12 @@ dimension: payment_dt_hour_tier {
 
   #금액정보
   dimension: netSales {
+    label: "순매출"
     description: "순매출"
     type: number
     sql: CASE WHEN orderStatus in ('p1','g1','d1','d2','s1','b3','b1','b2','b4','r2','r1','z1','z2','z3','z4','z5','e1','e2','e3','e4','e5') and (orderStatus  in ('d1','d2','g1','p1','s1') and handleSno < 0)
-                     THEN goodsPrice - IFNULL(enuri,0) - IFNULL(A.memberDcPrice,0) - IFNULL(A.divisionUseMileage,0) - IFNULL(A.divisionCouponOrderDcPrice,0) - IFNULL(couponGoodsDcPrice,0)
-                     ELSE 0
-                      END as netSales;;
+                     THEN goodsPrice - IFNULL(enuri,0) - IFNULL(memberDcPrice,0) - IFNULL(divisionUseMileage,0) - IFNULL(divisionCouponOrderDcPrice,0) - IFNULL(couponGoodsDcPrice,0)
+                     ELSE 0 END as netSales;;
    # sql_where: orderStatus in ('p1','g1','d1','d2','s1','b3','b1','b2','b4','r2','r1','z1','z2','z3','z4','z5','e1','e2','e3','e4','e5') and (orderStatus  in ('d1','d2','g1','p1','s1') and handleSno < 0);;
    #AND brandCd =  ${TABLE}.brandCd );;
   }
