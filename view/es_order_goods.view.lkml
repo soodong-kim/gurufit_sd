@@ -454,8 +454,7 @@ dimension: payment_dt_hour_tier {
     label: "금액정보"
     description: "금액정보"
     type: number
-    sql:  IFNULL(${goods_price}, 0} - IFNULL(${enuri},0) - IFNULL(${member_dc_price},0) - IFNULL(${division_use_mileage} ,0) - IFNULL(${division_coupon_order_dc_price} ,0) - IFNULL(${coupon_goods_dc_price},0)
-                     else 0 end ;;
+    sql:  IFNULL(${goods_price}, 0} - IFNULL(${enuri},0) - IFNULL(${member_dc_price},0) - IFNULL(${division_use_mileage} ,0) - IFNULL(${division_coupon_order_dc_price} ,0) - IFNULL(${coupon_goods_dc_price},0) ;;
   }
 
   #순매출
