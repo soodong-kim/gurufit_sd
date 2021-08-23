@@ -65,7 +65,7 @@ view: es_member {
     label: "나이"
     type: number
     #sql: ${created_year} - ${birth_dt_year} ;;
-    sql: CASE WHEN (YEAR(${birth_dt_date} )) > "0000" AND (YEAR(${birth_dt_date} )) < "2021" THEN (YEAR(SYSDATE())) - (YEAR(${birth_dt_date} )) END ;;
+    sql: CASE WHEN (YEAR(${birth_dt_date} )) > "1900" AND (YEAR(${birth_dt_date} )) < "2021" THEN (YEAR(SYSDATE())) - (YEAR(${birth_dt_date} )) END ;;
   }
 
   dimension: age_tier {

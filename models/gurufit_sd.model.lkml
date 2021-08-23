@@ -58,7 +58,7 @@ persist_with: gurufit_sd_default_datagroup
 explore: es_order_goods {
   label: "Skill Change Mini-Project"
   always_filter: {
-    filters: [es_member.birth_dt_year: "before 2021"]
+    filters: [es_member.birth_dt_year: "1900 to 2021"]
   }
   join: es_order {
     type: left_outer
