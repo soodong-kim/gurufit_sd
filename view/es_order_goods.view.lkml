@@ -451,8 +451,8 @@ dimension: payment_dt_hour_tier {
 
   #금액정보
   dimension: netSales {
-    label: "순매출"
-    description: "순매출"
+    label: "금액정보"
+    description: "금액정보"
     type: number
     sql: case when ${order_status} in ('p1','g1','d1','d2','s1','b3','b1','b2','b4','r2','r1','z1','z2','z3','z4','z5','e1','e2','e3','e4','e5') and (${order_status}  in ('d1','d2','g1','p1','s1') and ${handle_sno} < 0)
                      THEN ${goods_price} - IFNULL(${enuri},0) - IFNULL(${member_dc_price},0) - IFNULL(${division_use_mileage} ,0) - IFNULL(${division_coupon_order_dc_price} ,0) - IFNULL(${coupon_goods_dc_price},0)
