@@ -344,6 +344,7 @@ view: es_order_goods {
     description: "기본할인금액"
     type: number
     sql: case when ${time_sale_fl} = "N" then ${fixed_price} - ${goods_price}  else 0 end;;
+    value_format: "$0.00"
   }
 
 
@@ -352,6 +353,7 @@ view: es_order_goods {
   description: "타임세일할인금액"
   type: number
   sql: case when ${time_sale_fl} = "Y" then ${fixed_price} - ${goods_price}  else 0 end;;
+  value_format: "$0.00"
   }
 
 
@@ -449,7 +451,7 @@ dimension: payment_dt_hour_tier {
 
   #금액정보
   dimension: netSales {
-    description: "금액정보"
+    description: "순매출"
     type: number
     sql: CASE WHEN orderStatus in ('p1','g1','d1','d2','s1','b3','b1','b2','b4','r2','r1','z1','z2','z3','z4','z5','e1','e2','e3','e4','e5') and (orderStatus  in ('d1','d2','g1','p1','s1') and handleSno < 0)
                      THEN goodsPrice - IFNULL(enuri,0) - IFNULL(A.memberDcPrice,0) - IFNULL(A.divisionUseMileage,0) - IFNULL(A.divisionCouponOrderDcPrice,0) - IFNULL(couponGoodsDcPrice,0)
