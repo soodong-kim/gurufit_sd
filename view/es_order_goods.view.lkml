@@ -455,7 +455,7 @@ dimension: payment_dt_hour_tier {
     description: "금액정보"
     value_format: "$0.00"
     type: number
-    sql:  IFNULL(${goods_price}, 0} - IFNULL(${enuri},0) - IFNULL(${member_dc_price},0) - IFNULL(${division_use_mileage} ,0) - IFNULL(${division_coupon_order_dc_price} ,0) - IFNULL(${coupon_goods_dc_price},0) ;;
+    sql:  ${goods_price}  - ${enuri} - ${member_dc_price} - ${division_use_mileage} - ${division_coupon_order_dc_price} - ${coupon_goods_dc_price} ;;
   }
 
   #순매출
