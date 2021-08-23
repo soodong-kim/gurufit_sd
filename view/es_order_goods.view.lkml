@@ -339,24 +339,26 @@ view: es_order_goods {
     end;;
   }
 
-  #기본할인금액
-  dimension: basic_dc_price {
-    description: "기본할인금액"
-    type: number
-    sql: case when ${time_sale_fl} = "N" then ${fixed_price} - ${goods_price}  else 0 end;;
+  #금액정보
+  dimension: netSales_price {
+    label: "금액정보"
+    description: "금액정보"
     #value_format: "$0.00"
+    type: number
+    sql:  case when ( ${goods_price}  - ${enuri} - ${member_dc_price} - ${division_use_mileage} - ${division_coupon_order_dc_price} - ${coupon_goods_dc_price} ) > 0
+         then ${goods_price}  - ${enuri} - ${member_dc_price} - ${division_use_mileage} - ${division_coupon_order_dc_price} - ${coupon_goods_dc_price}
+         else 0 end;;
   }
 
-
-  #타임세일할인금액
-  dimension: timesale_dc_price {
-  description: "타임세일할인금액"
-  type: number
-  sql: case when ${time_sale_fl} = "Y" then ${fixed_price} - ${goods_price}  else 0 end;;
-  #value_format: "$0.00"
+  #순매출
+  dimension: sunSales_price {
+    label: "순매출"
+    type: number
+    #value_format: "$0.00"
+    sql: case when ${order_status} in ('p1','g1','d1','d2','s1','b3','b1','b2','b4','r2','r1','z1','z2','z3','z4','z5','e1','e2','e3','e4','e5') and (${order_status}  in ('d1','d2','g1','p1','s1') and ${handle_sno} < 0 - (${order_type}='일반'))
+                     THEN ${goods_price} - IFNULL(${enuri},0) - IFNULL(${member_dc_price},0) - IFNULL(${division_use_mileage} ,0) - IFNULL(${division_coupon_order_dc_price} ,0) - IFNULL(${coupon_goods_dc_price},0)
+                     else 0 end ;;
   }
-
-
 
   dimension: fee_price {
     label: "판매대금"
@@ -420,6 +422,45 @@ view: es_order_goods {
     null);;
   }
 
+  #PG 수수료
+  dimension: pg_price {
+    label: "PG수수료"
+    type: number
+    sql: ${netSales_price} * 0.028 ;;
+  }
+
+  #이익금
+  dimension: profit_price {
+    label: "이익금"
+    type: number
+    sql: ${sunSales_price} - ${fee_price} - ${pg_price} ;;
+  }
+
+
+  #기본할인금액
+  dimension: basic_dc_price {
+    description: "기본할인금액"
+    type: number
+    sql: case when ${time_sale_fl} = "N" then ${fixed_price} - ${goods_price}  else 0 end;;
+    #value_format: "$0.00"
+  }
+
+
+  #타임세일할인금액
+  dimension: timesale_dc_price {
+  description: "타임세일할인금액"
+  type: number
+  sql: case when ${time_sale_fl} = "Y" then ${fixed_price} - ${goods_price}  else 0 end;;
+  #value_format: "$0.00"
+  }
+
+  #할인금액(에누리할인 + 타임세일할인금액 + 회원할인금액 + 주문할인금액의안분된 적립금 + 주문할인금액의안분된 주문쿠폰 + 상품쿠폰 할인금액 + 기존 할인 금액
+  dimension: discount_price{
+  label: "할인금액"
+  type: number
+  sql: ${enuri} +  ${timesale_dc_price} + ${member_dc_price} + ${division_use_mileage} + ${division_coupon_order_dc_price} + ${coupon_goods_dc_price} + ${basic_dc_price}};;
+  }
+
 
  dimension: dc_price_rate_hidden {
   hidden: yes
@@ -448,36 +489,6 @@ dimension: payment_dt_hour_tier {
     end;;
 }
 ##############################################################################################
-
-  #금액정보
-  dimension: netSales_price {
-    label: "금액정보"
-    description: "금액정보"
-    #value_format: "$0.00"
-    type: number
-    sql:  case when ( ${goods_price}  - ${enuri} - ${member_dc_price} - ${division_use_mileage} - ${division_coupon_order_dc_price} - ${coupon_goods_dc_price} ) > 0
-         then ${goods_price}  - ${enuri} - ${member_dc_price} - ${division_use_mileage} - ${division_coupon_order_dc_price} - ${coupon_goods_dc_price}
-         else 0 end;;
-  }
-
-  #순매출
-  dimension: sunSales_price {
-    label: "순매출"
-    type: number
-    #value_format: "$0.00"
-    sql: case when ${order_status} in ('p1','g1','d1','d2','s1','b3','b1','b2','b4','r2','r1','z1','z2','z3','z4','z5','e1','e2','e3','e4','e5') and (${order_status}  in ('d1','d2','g1','p1','s1') and ${handle_sno} < 0 - (${order_type}='일반'))
-                     THEN ${goods_price} - IFNULL(${enuri},0) - IFNULL(${member_dc_price},0) - IFNULL(${division_use_mileage} ,0) - IFNULL(${division_coupon_order_dc_price} ,0) - IFNULL(${coupon_goods_dc_price},0)
-                     else 0 end ;;
-  }
-
- #PG 수수료
- dimension: pg_price {
-   label: "PG수수료"
-   sql: ${netSales_price} * 0.028 ;;
- }
-
-
-
   # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
   # measures for numeric dimensions, but you can also add measures of many different types.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
