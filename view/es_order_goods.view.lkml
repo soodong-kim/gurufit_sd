@@ -447,6 +447,17 @@ dimension: payment_dt_hour_tier {
 }
 ##############################################################################################
 
+  #금액정보
+  dimension: netSales {
+    description: "금액정보"
+    type: number
+    sql: CASE WHEN orderStatus in ('p1','g1','d1','d2','s1','b3','b1','b2','b4','r2','r1','z1','z2','z3','z4','z5','e1','e2','e3','e4','e5') and (orderStatus  in ('d1','d2','g1','p1','s1') and handleSno < 0)
+                     THEN goodsPrice - IFNULL(enuri,0) - IFNULL(A.memberDcPrice,0) - IFNULL(A.divisionUseMileage,0) - IFNULL(A.divisionCouponOrderDcPrice,0) - IFNULL(couponGoodsDcPrice,0)
+                     ELSE 0
+                      END as netSales;;
+   # sql_where: orderStatus in ('p1','g1','d1','d2','s1','b3','b1','b2','b4','r2','r1','z1','z2','z3','z4','z5','e1','e2','e3','e4','e5') and (orderStatus  in ('d1','d2','g1','p1','s1') and handleSno < 0);;
+   #AND brandCd =  ${TABLE}.brandCd );;
+  }
 
 
 
@@ -454,20 +465,7 @@ dimension: payment_dt_hour_tier {
   # measures for numeric dimensions, but you can also add measures of many different types.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
-  #금액정보
-  dimension: netSales {
-    description: "금액정보"
-    type: number
-    sql:
-        (
-          select CASE WHEN A.orderStatus in ('p1','g1','d1','d2','s1','b3','b1','b2','b4','r2','r1','z1','z2','z3','z4','z5','e1','e2','e3','e4','e5') and (A.orderStatus  in ('d1','d2','g1','p1','s1') and A.handleSno < 0)
-                     THEN A.goodsPrice - IFNULL(A.enuri,0) - IFNULL(A.memberDcPrice,0) - IFNULL(A.divisionUseMileage,0) - IFNULL(A.divisionCouponOrderDcPrice,0) - IFNULL(A.couponGoodsDcPrice,0)
-                     ELSE 0
-                      END as netSales
-          FROM es_order_goods AS A
-          WHERE A.orderStatus in ('p1','g1','d1','d2','s1','b3','b1','b2','b4','r2','r1','z1','z2','z3','z4','z5','e1','e2','e3','e4','e5') and (orderStatus  in ('d1','d2','g1','p1','s1') and handleSno < 0)
-            AND A.brandCd =  ${TABLE}.brandCd );;
-  }
+
 
   measure: count {
     type: count
