@@ -64,7 +64,8 @@ view: es_member {
   dimension: age{
     label: "나이"
     type: number
-    sql: ${created_year} - ${birth_dt_year} ;;
+    #sql: ${created_year} - ${birth_dt_year} ;;
+    sql: CASE WHEN (YEAR(${birth_dt_date} )) > "0000" AND (YEAR(${birth_dt_date} )) < "2021" THEN (YEAR(SYSDATE())) - (YEAR(${birth_dt_date} )) END ;;
   }
 
   dimension: age_tier {
