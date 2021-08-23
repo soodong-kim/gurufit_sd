@@ -56,6 +56,7 @@ persist_with: gurufit_sd_default_datagroup
 #  }
 
 explore: es_order_goods {
+  label: "Skill Change Mini-Project"
   join: es_order {
     type: left_outer
     sql_on: ${es_order_goods.order_no}  = ${es_order.order_no};;
