@@ -23,6 +23,11 @@ view: es_goods {
     label: "상품이름"
     type: string
     sql: ${TABLE}.goodsNm ;;
+    link: {
+      label: "Google Search"
+      url: "http://www.google.com/search?q={{ value }}+Clothig"
+      icon_url: "https://www.google.com/favicon.ico"
+    }
   }
 
   #상품판매 여부(y/n)
