@@ -57,9 +57,9 @@ include: "/view/**/category_goods.view"
 
 explore: es_order_goods {
   label: "Skill Change Mini-Project"
-  always_filter: {
-    filters: [es_member.birth_dt_year: "1910 to 2021"]
-  }
+  #always_filter: {
+  #  filters: [es_member.birth_dt_year: "1910 to 2021"]
+  #}
   join: es_order {
     type: left_outer
     sql_on: ${es_order_goods.order_no}  = ${es_order.order_no};;
