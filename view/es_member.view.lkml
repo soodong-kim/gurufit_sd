@@ -211,7 +211,7 @@ view: es_member {
   dimension: sex_fl {
     label: "성별"
     type: string
-    sql: ${TABLE}.sexFl ;;
+    sql:  CASE WHEN ${TABLE}.sexFl = 'm' then "남자" WHEN ${TABLE}.sexFl = 'w' then "여자" end ;;
   }
 
   #가입경로
