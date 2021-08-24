@@ -243,14 +243,14 @@ view: es_order_info {
 
   measure: count {
     type: count
-    drill_fields: [order_name, receiver_name]
+    #drill_fields: [order_name, receiver_name]
   }
 
   # These sum and average measures are hidden by default.
   # If you want them to show up in your explore, remove hidden: yes.
   measure: total_sno {
     type: sum
-    hidden: yes
+    #hidden: yes
     sql: ${sno} ;;
   }
 
