@@ -69,8 +69,9 @@ view: es_member {
   }
 
   dimension: age_tier {
+    label: "연령별"
     type: tier
-    tiers: [0, 10, 20, 30, 40, 50, 60, 70, 80]
+    tiers: [0, 11, 21, 31, 41, 51, 61, 71, 81]
     style: integer
     sql: ${age};;
   }
