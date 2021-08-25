@@ -10,40 +10,40 @@ view: es_member {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Address" in Explore.
 
-  #parameter: this_year {
-  #  type: date
-  #}
-
-  #dimension: year_limit {
-  #  type: date_year
-  #  sql: {% parameter this_year %} ;;
-  #}
-
-
-
-  parameter: date_granularity {
-    type: date
-    allowed_value: {
-      label: "월별 구분"
-      value: "month"
-    }
-    allowed_value: {
-      label: "년별 구분"
-      value: "year"
-    }
+  parameter: this_year {
+    type: number
   }
 
-  dimension: this_date {
-    label: "조회일자"
-    sql:
-    {% if date_granularity._parameter_value == 'month' %}
-      ${reg_dt_month}
-  {% elsif date_granularity._parameter_value == 'year' %}
-      ${reg_dt_year}
-    {% else %}
-      ${reg_dt_date}
-    {% endif %};;
+  dimension: year_limit {
+    type: number
+    sql: {% parameter this_year %} ;;
   }
+
+
+
+  # parameter: date_granularity {
+  #   type: date
+  #   allowed_value: {
+  #     label: "월별 구분"
+  #     value: "month"
+  #   }
+  #   allowed_value: {
+  #     label: "년별 구분"
+  #     value: "year"
+  #   }
+  # }
+
+  # dimension: this_date {
+  #   label: "조회일자"
+  #   sql:
+  #   {% if date_granularity._parameter_value == 'month' %}
+  #     ${reg_dt_month}
+  # {% elsif date_granularity._parameter_value == 'year' %}
+  #     ${reg_dt_year}
+  #   {% else %}
+  #     ${reg_dt_date}
+  #   {% endif %};;
+  # }
 
 
 
