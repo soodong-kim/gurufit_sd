@@ -11,11 +11,11 @@ view: es_member {
   # This dimension will be called "Address" in Explore.
 
   parameter: this_year {
-    type: string
+    type: date
   }
 
   dimension: year_limit {
-    type: string
+    type: date_year
     sql: {% parameter this_year %} ;;
   }
 
