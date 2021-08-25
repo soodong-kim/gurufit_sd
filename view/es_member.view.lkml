@@ -33,6 +33,7 @@ view: es_member {
   }
 
   dimension: this_date {
+    label: "조회일자"
     sql:
     {% if date_granularity._parameter_value == 'month' %}
       ${reg_dt_month}
