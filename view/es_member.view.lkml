@@ -21,28 +21,48 @@ view: es_member {
 
 
   parameter: date_granularity {
-    type: unquoted
-    allowed_value: {
-      label: "월별 구분"
-      value: "month"
-    }
-    allowed_value: {
-      label: "년별 구분"
-      value: "year"
-    }
+    type: string
+    allowed_value: { value: "month" }
+    allowed_value: { value: "year" }
   }
 
   dimension: this_date {
     label: "조회일자"
+    label_from_parameter: date_granularity
     sql:
-    {% if date_granularity._parameter_value == 'month' %}
-      ${reg_dt_month}
-    {% elsif date_granularity._parameter_value == 'year' %}
-      ${reg_dt_year}
+    {% if date_granularity._parameter_value == "'month'" %}
+      ${reg_dt_month}::VARCHAR
+    {% elsif date_granularity._parameter_value == "'year'" %}
+      ${reg_dt_year}::VARCHAR
     {% else %}
-      ${reg_dt_date}
-    {% endif %};;
+      NULL
+    {% endif %} ;;
   }
+
+
+  #parameter: date_granularity {
+  #  type: unquoted
+  #  allowed_value: {
+  #    label: "월별 구분"
+  #    value: "month"
+  #  }
+  #  allowed_value: {
+  #    label: "년별 구분"
+  #    value: "year"
+  #  }
+  #}
+
+  #dimension: this_date {
+  #  label: "조회일자"
+  #  sql:
+  #  {% if date_granularity._parameter_value == 'month' %}
+  #    ${reg_dt_month}
+  # {% elsif date_granularity._parameter_value == 'year' %}
+  #    ${reg_dt_year}
+  #  {% else %}
+  #    ${reg_dt_date}
+  #  {% endif %};;
+  #}
 
 
 
