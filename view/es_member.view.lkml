@@ -32,7 +32,7 @@ view: es_member {
     }
   }
 
-  dimension: date {
+  dimension: this_date {
     sql:
     {% if date_granularity._parameter_value == 'month' %}
       ${reg_dt_month}
