@@ -10,6 +10,16 @@ view: es_member {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Address" in Explore.
 
+  parameter: this_year {
+    type: string
+  }
+
+  dimension: year_limit {
+    type: string
+    sql: {% parameter this_year %} ;;
+  }
+
+
   #주소
   dimension: address {
     label: "주소"
