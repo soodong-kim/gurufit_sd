@@ -10,14 +10,39 @@ view: es_member {
   # A dimension is a groupable field that can be used to filter query results.
   # This dimension will be called "Address" in Explore.
 
-  parameter: this_year {
-    type: date
+  #parameter: this_year {
+  #  type: date
+  #}
+
+  #dimension: year_limit {
+  #  type: date_year
+  #  sql: {% parameter this_year %} ;;
+  #}
+
+
+  parameter: date_granularity {
+    type: unquoted
+    allowed_value: {
+      label: "월별 구분"
+      value: "month"
+    }
+    allowed_value: {
+      label: "년별 구분"
+      value: "year"
+    }
   }
 
-  dimension: year_limit {
-    type: date_year
-    sql: {% parameter this_year %} ;;
+  dimension: date {
+    sql:
+    {% if date_granularity._parameter_value == 'month' %}
+      ${reg_dt_month}
+    {% elsif date_granularity._parameter_value == 'year' %}
+      ${reg_dt_year}
+    {% else %}
+      ${reg_dt_date}
+    {% endif %};;
   }
+
 
 
   #주소
