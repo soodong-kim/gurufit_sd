@@ -638,12 +638,14 @@ view: es_member {
 
   measure: total_sale_amt {
     type: sum
+    value_format: "#,##0,,\" 원\""
     hidden: no
     sql: ${sale_amt} ;;
   }
 
   measure: average_sale_amt {
     type: average
+    value_format: "#,##0,,\" 원\""
     hidden: no
     sql: ${sale_amt} ;;
   }
