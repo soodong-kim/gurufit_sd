@@ -217,12 +217,6 @@ view: es_member {
     sql: ${TABLE}.memId ;;
   }
 
-  #이름
-  dimension: mem_nm {
-    label: "이름"
-    type: string
-    sql: ${TABLE}.memNm ;;
-  }
 
   #핸드폰
   dimension: cell_phone {
@@ -585,7 +579,6 @@ view: es_member {
   # If you want them to show up in your explore, remove hidden: yes.
 
   measure: total_deposit {
-    type: sum
     hidden: yes
     sql: ${deposit} ;;
   }
