@@ -574,6 +574,12 @@ view: es_member {
     drill_fields: [mem_no, age, age_tier]
   }
 
+  measure: max_count {
+    type: sum
+    filters: [sale_cnt: ">50"]
+    sql: ${sale_cnt} ;;
+  }
+
   # These sum and average measures are hidden by default.
   # If you want them to show up in your explore, remove hidden: yes.
 
