@@ -506,15 +506,20 @@ dimension: payment_dt_hour_tier {
   # measures for numeric dimensions, but you can also add measures of many different types.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
-
+  # These sum and average measures are hidden by default.
+  # If you want them to show up in your explore, remove hidden: yes.
 
   measure: count {
     type: count
     drill_fields: []
   }
 
-  # These sum and average measures are hidden by default.
-  # If you want them to show up in your explore, remove hidden: yes.
+  measure: total_netSales_price {
+    label: "총금액정보"
+    type: sum
+    value_format: "#,##0\" 원\""
+    sql:  ${netSales_price};;
+  }
 
 
   measure: total_coupon_goods_dc_price {
