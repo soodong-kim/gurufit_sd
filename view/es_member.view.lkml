@@ -217,6 +217,12 @@ view: es_member {
     sql: ${TABLE}.memId ;;
   }
 
+  #이름
+  dimension: mem_nm {
+    label: "이름"
+    type: string
+    sql: ${TABLE}.memNm ;;
+  }
 
   #핸드폰
   dimension: cell_phone {
