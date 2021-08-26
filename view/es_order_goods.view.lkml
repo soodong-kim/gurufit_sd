@@ -80,10 +80,11 @@ view: es_order_goods {
     label: "상품명"
     type: string
     sql: ${TABLE}.goodsNm ;;
-    # ink: {
-    #   label: "Google Search"
-    #   url: "http://www.google.com/search?q={{ value }}+Clothig"
-    #   icon_url: "https://www.google.com/favicon.ico"
+     link: {
+      label: "Google Search"
+      url: "http://www.google.com/search?q={{ value }}+Clothig"
+      icon_url: "https://www.google.com/favicon.ico"
+    }
   }
 
   #타임세일여부(y/n)
