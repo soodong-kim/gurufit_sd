@@ -574,10 +574,11 @@ view: es_member {
     drill_fields: [mem_no, age, age_tier]
   }
 
-  measure: max_count {
-    type: sum
-    filters: [sale_cnt: ">50"]
-    sql: ${sale_cnt} ;;
+  measure: max_amt {
+    type: max
+    #filters: [sale_cnt: ">50"]
+    value_format: "#,##0\" 원\""
+    sql: ${sale_amt} ;;
   }
 
   # These sum and average measures are hidden by default.
