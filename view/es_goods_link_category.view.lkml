@@ -28,6 +28,7 @@ view: es_goods_link_category {
   #일련번호(PRIMARY KEY)
   dimension: sno {
     label: "일련번호"
+    primary_key: yes
     type: number
     sql: ${TABLE}.sno ;;
   }
