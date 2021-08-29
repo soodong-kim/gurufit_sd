@@ -23,6 +23,11 @@ view: es_category_brand {
   dimension: cate_nm {
     label: "카테고리명"
     type: string
+    link: {
+      label: "Google Search"
+      url: "http://www.google.com/search?q={{ value }}"
+      icon_url: "https://www.google.com/favicon.ico"
+    }
     sql: ${TABLE}.cateNm ;;
   }
 
