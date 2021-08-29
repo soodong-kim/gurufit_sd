@@ -522,6 +522,7 @@ dimension: payment_dt_hour_tier {
   measure: total_netSales_price {
     label: "총금액정보"
     type: sum
+    drill_fields: [goods_nm, goods_cnt, goods_price]
     value_format: "#,##0\" 원\""
     sql:  ${netSales_price};;
   }
