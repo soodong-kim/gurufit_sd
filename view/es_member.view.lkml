@@ -659,6 +659,7 @@ view: es_member {
 
   measure: total_sale_cnt {
     type: sum
+    value_format: "#,##0\" 족\""
     hidden: no
     sql: ${sale_cnt} ;;
   }

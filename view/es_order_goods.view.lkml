@@ -738,10 +738,4 @@ dimension: payment_dt_hour_tier {
     hidden: yes
     sql: ${sno} ;;
   }
-
-  measure: average_sno {
-    type: average
-    hidden: yes
-    sql: ${sno} ;;
-  }
 }
