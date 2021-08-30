@@ -363,9 +363,18 @@ view: es_order_goods {
          else 0 end;;
   }
 
+  #순매출(판매가-쿠폰할인-마일리지할인-기타할인)
+  dimension: sun_price {
+    label: "순매출"
+    type: number
+    value_format : "#,##0"
+    sql: ${goods_price} - ${discount_price};;
+  }
+
+
   #순매출
   dimension: sunSales_price {
-    label: "순매출"
+    label: "이익률계산의순매출"
     type: number
     value_format : "#,##0"
     #value_format_name: ko_KR
