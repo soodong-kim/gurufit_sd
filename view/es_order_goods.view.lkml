@@ -539,7 +539,7 @@ dimension: payment_dt_hour_tier {
 
   measure: total_goods_cnt {
     type: sum
-    drill_fields: [goods_nm, fixed_price, basic_dc_price, goods_price, fee_price, discount_price, sun_price]
+    drill_fields: [goods_nm, fixed_price, basic_dc_price, goods_price, discount_price, sun_price]
     value_format: "#,##0\" 족\""
     sql: ${goods_cnt} ;;
   }
