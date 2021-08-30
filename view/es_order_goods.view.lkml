@@ -552,6 +552,11 @@ dimension: payment_dt_hour_tier {
     sql:  ${netSales_price};;
   }
 
+  measure: total_member_mileage {
+    type: sum
+    value_format: "#,##0\" 원\""
+    sql: ${member_mileage} ;;
+  }
 
   measure: total_coupon_goods_dc_price {
     type: sum
@@ -726,12 +731,6 @@ dimension: payment_dt_hour_tier {
     type: average
     hidden: yes
     sql: ${member_dc_price} ;;
-  }
-
-  measure: total_member_mileage {
-    type: sum
-    hidden: yes
-    sql: ${member_mileage} ;;
   }
 
   measure: average_member_mileage {
