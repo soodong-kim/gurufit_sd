@@ -748,16 +748,4 @@ dimension: payment_dt_hour_tier {
     hidden: yes
     sql: ${order_cd} ;;
   }
-
-  measure: average_order_cd {
-    type: average
-    hidden: yes
-    sql: ${order_cd} ;;
-  }
-
-  measure: total_sno {
-    type: sum
-    hidden: yes
-    sql: ${sno} ;;
-  }
 }

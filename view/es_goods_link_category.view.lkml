@@ -44,27 +44,4 @@ view: es_goods_link_category {
 
   # These sum and average measures are hidden by default.
   # If you want them to show up in your explore, remove hidden: yes.
-  measure: total_goods_no {
-    type: sum
-    hidden: yes
-    sql: ${goods_no} ;;
-  }
-
-  measure: average_goods_no {
-    type: average
-    hidden: yes
-    sql: ${goods_no} ;;
-  }
-
-  measure: total_sno {
-    type: sum
-    hidden: yes
-    sql: ${sno} ;;
-  }
-
-  measure: average_sno {
-    type: average
-    hidden: yes
-    sql: ${sno} ;;
-  }
 }

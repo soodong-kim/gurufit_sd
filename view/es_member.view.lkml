@@ -606,65 +606,20 @@ view: es_member {
     sql: ${sale_cnt} ;;
   }
 
-  # These sum and average measures are hidden by default.
-  # If you want them to show up in your explore, remove hidden: yes.
-
-  measure: total_deposit {
-    hidden: yes
-    sql: ${deposit} ;;
-  }
-
-  measure: average_deposit {
-    type: average
-    hidden: yes
-    sql: ${deposit} ;;
-  }
-
-  measure: total_group_sno {
-    type: sum
-    hidden: yes
-    sql: ${group_sno} ;;
-  }
-
-  measure: average_group_sno {
-    type: average
-    hidden: yes
-    sql: ${group_sno} ;;
-  }
-
   measure: total_login_cnt {
     type: sum
-    hidden: yes
     sql: ${login_cnt} ;;
-  }
-
-  measure: average_login_cnt {
-    type: average
-    hidden: yes
-    sql: ${login_cnt} ;;
-  }
-
-  measure: total_mem_no {
-    type: sum
-    hidden: yes
-    sql: ${mem_no} ;;
-  }
-
-  measure: average_mem_no {
-    type: average
-    hidden: yes
-    sql: ${mem_no} ;;
   }
 
   measure: total_mileage {
     type: sum
-    hidden: yes
     sql: ${mileage} ;;
   }
 
   measure: average_mileage {
     type: average
-    hidden: yes
     sql: ${mileage} ;;
   }
+  # These sum and average measures are hidden by default.
+  # If you want them to show up in your explore, remove hidden: yes.
 }

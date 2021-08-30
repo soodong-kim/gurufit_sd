@@ -235,8 +235,6 @@ view: es_order_info {
     sql: ${TABLE}.regDt ;;
   }
 
-
-
   # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
   # measures for numeric dimensions, but you can also add measures of many different types.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
@@ -250,13 +248,6 @@ view: es_order_info {
   # If you want them to show up in your explore, remove hidden: yes.
   measure: total_sno {
     type: sum
-    #hidden: yes
-    sql: ${sno} ;;
-  }
-
-  measure: average_sno {
-    type: average
-    hidden: yes
     sql: ${sno} ;;
   }
 }

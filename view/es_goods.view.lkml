@@ -121,51 +121,5 @@ view: es_goods {
 
   # These sum and average measures are hidden by default.
   # If you want them to show up in your explore, remove hidden: yes.
-  measure: average_cart_cnt {
-    type: average
-    hidden: yes
-    sql: ${cart_cnt} ;;
-  }
-
-  measure: total_goods_no {
-    type: sum
-    hidden: yes
-    sql: ${goods_no} ;;
-  }
-
-  measure: average_goods_no {
-    type: average
-    hidden: yes
-    sql: ${goods_no} ;;
-  }
-
-  measure: total_hit_cnt {
-    type: sum
-    hidden: yes
-    sql: ${hit_cnt} ;;
-  }
-
-  measure: average_hit_cnt {
-    type: average
-    hidden: yes
-    sql: ${hit_cnt} ;;
-  }
-
-  measure: average_review_cnt {
-    type: average
-    hidden: yes
-    sql: ${review_cnt} ;;
-  }
-
-  measure: total_wish_cnt {
-    type: sum
-    hidden: yes
-    sql: ${wish_cnt} ;;
-  }
-
-  measure: average_wish_cnt {
-    type: average
-    hidden: yes
-    sql: ${wish_cnt} ;;
-  }
+  ###################################################################
 }
