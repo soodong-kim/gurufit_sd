@@ -198,7 +198,7 @@ view: es_order {
 
   measure: count {
     type: count
-    drill_fields: [order_no, payment_dt_month]
+    drill_fields: [order_no, order_goods_nm, payment_dt_month]
   }
 
   # These sum and average measures are hidden by default.
@@ -219,6 +219,7 @@ view: es_order {
   measure: total_order_goods_cnt {
     type: sum
     hidden: no
+    drill_fields: [order_no, order_goods_nm, payment_dt_month]
     sql: ${order_goods_cnt} ;;
   }
 
