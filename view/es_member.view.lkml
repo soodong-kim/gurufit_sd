@@ -217,6 +217,7 @@ view: es_member {
   #이름
   dimension: mem_nm {
     label: "이름"
+    drill_fields: [mem_id, nick_nm, entry_dt_date, birth_dt_date, cell_phone, email, address, address_sub]
     type: string
     sql: ${TABLE}.memNm ;;
   }
