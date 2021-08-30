@@ -105,15 +105,22 @@ view: es_goods {
     drill_fields: [goods_no, goods_nm]
   }
 
-  # These sum and average measures are hidden by default.
-  # If you want them to show up in your explore, remove hidden: yes.
-
   measure: total_cart_cnt {
+    description: "장바구니 총합수"
     type: sum
-    hidden: yes
+    value_format: "#,##0\" 개\""
     sql: ${cart_cnt} ;;
   }
 
+  measure: total_review_cnt {
+    description: "리뷰 총합수"
+    type: sum
+    value_format: "#,##0\" 개\""
+    sql: ${review_cnt} ;;
+  }
+
+  # These sum and average measures are hidden by default.
+  # If you want them to show up in your explore, remove hidden: yes.
   measure: average_cart_cnt {
     type: average
     hidden: yes
@@ -142,12 +149,6 @@ view: es_goods {
     type: average
     hidden: yes
     sql: ${hit_cnt} ;;
-  }
-
-  measure: total_review_cnt {
-    type: sum
-    hidden: yes
-    sql: ${review_cnt} ;;
   }
 
   measure: average_review_cnt {
