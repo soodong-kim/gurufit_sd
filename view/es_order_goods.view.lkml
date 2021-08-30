@@ -562,7 +562,7 @@ dimension: payment_dt_hour_tier {
     description: "상품중 적립금 지불한 금액에 한함"
     type: sum
     filters: [plus_mileage_fl: "y"]
-    drill_fields: [goods_nm, fixed_price, basic_dc_price, goods_price, discount_price, sun_price]
+    drill_fields: [goods_nm, fixed_price, basic_dc_price, goods_mileage]
     value_format: "#,##0\" 원\""
     sql: ${goods_mileage} ;;
   }
