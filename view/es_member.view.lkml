@@ -581,6 +581,33 @@ view: es_member {
     sql: ${sale_amt} ;;
   }
 
+  measure: total_sale_amt {
+    type: sum
+    value_format: "#,##0\" 원\""
+    hidden: no
+    sql: ${sale_amt} ;;
+  }
+
+  measure: average_sale_amt {
+    type: average
+    value_format: "#,##0\" 원\""
+    hidden: no
+    sql: ${sale_amt} ;;
+  }
+
+  measure: total_sale_cnt {
+    type: sum
+    value_format: "#,##0\" 족\""
+    hidden: no
+    sql: ${sale_cnt} ;;
+  }
+
+  measure: average_sale_cnt {
+    type: average
+    hidden: no
+    sql: ${sale_cnt} ;;
+  }
+
   # These sum and average measures are hidden by default.
   # If you want them to show up in your explore, remove hidden: yes.
 
@@ -641,32 +668,5 @@ view: es_member {
     type: average
     hidden: yes
     sql: ${mileage} ;;
-  }
-
-  measure: total_sale_amt {
-    type: sum
-    value_format: "#,##0\" 원\""
-    hidden: no
-    sql: ${sale_amt} ;;
-  }
-
-  measure: average_sale_amt {
-    type: average
-    value_format: "#,##0\" 원\""
-    hidden: no
-    sql: ${sale_amt} ;;
-  }
-
-  measure: total_sale_cnt {
-    type: sum
-    value_format: "#,##0\" 족\""
-    hidden: no
-    sql: ${sale_cnt} ;;
-  }
-
-  measure: average_sale_cnt {
-    type: average
-    hidden: no
-    sql: ${sale_cnt} ;;
   }
 }
