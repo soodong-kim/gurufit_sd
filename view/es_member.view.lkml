@@ -18,9 +18,6 @@ view: es_member {
     type: number
     sql: {% parameter this_year %} ;;
   }
-
-
-
   # parameter: date_granularity {
   #   type: date
   #   allowed_value: {
