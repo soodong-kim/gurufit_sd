@@ -1,8 +1,8 @@
 # The name of this view in Looker is "Es Order"
 view: es_order {
+view_label: "주문서 기본정보"
 
   sql_table_name: gurufit_to_looker.es_order ;;
-
 
   #구매 쿠폰 지급여부
   dimension: event_coupon_fl {

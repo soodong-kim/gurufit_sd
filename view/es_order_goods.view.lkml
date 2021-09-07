@@ -1,5 +1,6 @@
 # The name of this view in Looker is "Es Order Goods"
 view: es_order_goods {
+view_label: "주문 상품 정보"
 
   sql_table_name: gurufit_to_looker.es_orderGoods ;;
 

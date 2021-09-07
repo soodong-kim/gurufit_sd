@@ -1,5 +1,6 @@
 # The name of this view in Looker is "Es Goods Link Category"
 view: es_goods_link_category {
+  view_label: "상품 카테고리 연결 및 정렬"
 
   sql_table_name: gurufit_to_looker.es_goodsLinkCategory ;;
 

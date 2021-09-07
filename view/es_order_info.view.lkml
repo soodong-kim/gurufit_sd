@@ -1,5 +1,6 @@
 # The name of this view in Looker is "Es Order Info"
 view: es_order_info {
+view_label: "주문 정보(주문자,수취인)"
 
   sql_table_name: gurufit_to_looker.es_orderInfo ;;
 

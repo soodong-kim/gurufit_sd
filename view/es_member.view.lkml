@@ -1,5 +1,6 @@
 # The name of this view in Looker is "Es Member"
 view: es_member {
+  view_label: "회원정보"
 
   sql_table_name: gurufit_to_looker.es_member ;;
 
