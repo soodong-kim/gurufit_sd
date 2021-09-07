@@ -182,6 +182,7 @@ view: es_member {
   dimension: mem_no {
     primary_key: yes
     label: "회원번호"
+    value_format: "0"
     type: number
     sql: ${TABLE}.memNo ;;
   }
