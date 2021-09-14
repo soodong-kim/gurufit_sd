@@ -4,6 +4,9 @@ view_label: "브랜드 카테고리"
 
   sql_table_name: gurufit_to_looker.es_categoryBrand ;;
 
+
+
+
   #카테고리코드(PRIMARY KEY)
   dimension: cate_cd {
     primary_key: yes

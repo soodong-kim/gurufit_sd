@@ -11,16 +11,11 @@ include: "/view/**/es_order_goods.view"
 include: "/view/**/es_order_info.view"
 include: "/view/**/category_goods.view"
 
+datagroup: gurufit_sd_default_datagroup {
+  max_cache_age: "1 hour"
+}
+persist_with: gurufit_sd_default_datagroup
 
-#datagroup: gurufit_sd_default_datagroup {
-#  max_cache_age: "1 hour"
-#}
-
-#persist_with: gurufit_sd_default_datagroup
-
-# # Select the views that should be a part of this model,
-# # and define the joins that connect them together.
-#
 
 #explore:  es_member{
 #  join: es_order {
