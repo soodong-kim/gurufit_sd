@@ -1,9 +1,4 @@
 {
 
-"Count": "수" ,
-"id" : "식별자" ,
-"항공사" : "항공사" ,
-"country_of_departure" : "출발국" ,
-"number_engines" : "엔진 수"
-
+"Count": "수"
 }
