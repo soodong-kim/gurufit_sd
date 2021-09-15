@@ -230,6 +230,7 @@ view_label: "주문 정보(주문자,수취인)"
 
 ##############################################################################################
   measure: count {
+    label: "count"
     type: count
     #drill_fields: [order_name, receiver_name]
   }
