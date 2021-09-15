@@ -618,5 +618,12 @@ view: es_member {
     type: average
     sql: ${mileage} ;;
   }
+
+  measure: year_total_sale_amt{
+   label: "년도총합계금액"
+   type: sum
+   sql: ${sale_amt};;
+  }
+
   ##############################################################################################
 }
