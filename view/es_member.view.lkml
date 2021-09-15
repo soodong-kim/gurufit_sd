@@ -557,12 +557,14 @@ view: es_member {
 
 ##############################################################################################
   measure: count {
+    label: "count"
     type: count
     drill_fields: [mem_no, age, age_tier]
   }
 
   measure: max_amt {
     type: max
+    label: "총금액"
     #filters: [sale_cnt: ">50"]
     value_format: "#,##0\" 원\""
     sql: ${sale_amt} ;;
@@ -570,6 +572,7 @@ view: es_member {
 
   measure: total_sale_amt {
     type: sum
+    label: "saleamt"
     value_format: "#,##0\" 원\""
     hidden: no
     sql: ${sale_amt} ;;
@@ -577,12 +580,14 @@ view: es_member {
 
   measure: average_sale_amt {
     type: average
+    label: "avesaleamt"
     value_format: "#,##0\" 원\""
     hidden: no
     sql: ${sale_amt} ;;
   }
 
   measure: total_sale_cnt {
+    label: "totalsalecnt"
     type: sum
     value_format: "#,##0\" 족\""
     hidden: no
@@ -590,22 +595,26 @@ view: es_member {
   }
 
   measure: average_sale_cnt {
+    label: "평균판매수"
     type: average
     hidden: no
     sql: ${sale_cnt} ;;
   }
 
   measure: total_login_cnt {
+    label: "총로그인수"
     type: sum
     sql: ${login_cnt} ;;
   }
 
   measure: total_mileage {
+    label: "토탈마일리지"
     type: sum
     sql: ${mileage} ;;
   }
 
   measure: average_mileage {
+    label: "평균마일리지"
     type: average
     sql: ${mileage} ;;
   }
