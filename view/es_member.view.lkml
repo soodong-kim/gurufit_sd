@@ -622,7 +622,7 @@ view: es_member {
   measure: year_total_sale_amt{
    label: "년도총합계금액"
    type: sum
-   sql: ${sale_amt};;
+   sql: sum(${sale_amt});;
   }
 
   ##############################################################################################
