@@ -189,11 +189,13 @@ view_label: "주문서 기본정보"
 ##############################################################################################
   measure: count {
     type: count
+    label: "count"
     drill_fields: [order_no, order_goods_nm, payment_dt_month]
   }
 
   measure: total_order_goods_cnt {
     type: sum
+    label: "ordergoodscnt"
     hidden: no
     drill_fields: [order_no, order_goods_nm, payment_dt_month]
     sql: ${order_goods_cnt} ;;
@@ -201,6 +203,7 @@ view_label: "주문서 기본정보"
 
   measure: average_order_goods_cnt {
     type: average
+    label: "aveordergoodscnt"
     hidden: no
     sql: ${order_goods_cnt} ;;
   }

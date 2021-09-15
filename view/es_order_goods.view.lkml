@@ -519,11 +519,13 @@ dimension: payment_dt_hour_tier {
 
 ##############################################################################################
   measure: count {
+    label: "count"
     type: count
     #drill_fields: []
   }
 
   measure: total_goods_cnt {
+    label: "totalgoodscnt"
     type: sum
     drill_fields: [goods_nm, fixed_price, basic_dc_price, goods_price, discount_price, sun_price]
     value_format: "#,##0\" 족\""
@@ -539,6 +541,7 @@ dimension: payment_dt_hour_tier {
   }
 
   measure: total_member_mileage {
+    label: "total_member_mileage"
     type: sum
     value_format: "#,##0\" 원\""
     sql: ${member_mileage} ;;
@@ -546,6 +549,7 @@ dimension: payment_dt_hour_tier {
 
   measure: total_goods_mileage {
     description: "상품중 적립금 지불한 금액에 한함"
+    label: "total_goods_mileage"
     type: sum
     filters: [plus_mileage_fl: "y"]
     drill_fields: [goods_nm, fixed_price, basic_dc_price, goods_mileage]
