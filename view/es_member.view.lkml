@@ -12,6 +12,8 @@ view: es_member {
     type: number
     sql: {% parameter this_year %} ;;
   }
+
+
   # parameter: date_granularity {
   #   type: date
   #   allowed_value: {
@@ -35,8 +37,6 @@ view: es_member {
   #     ${reg_dt_date}
   #   {% endif %};;
   # }
-
-
 
   #주소
   dimension: address {
