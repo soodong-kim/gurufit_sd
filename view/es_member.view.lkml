@@ -622,7 +622,7 @@ view: es_member {
   measure: year_total_sale_amt{
    label: "년도총합계금액"
    value_format: "#,##0\" 원\""
-   type: sum
+   type: sum_distinct
    sql: ${sale_amt};;
   }
 
