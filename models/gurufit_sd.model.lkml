@@ -11,10 +11,11 @@ include: "/view/**/es_order_goods.view"
 include: "/view/**/es_order_info.view"
 include: "/view/**/category_goods.view"
 
-datagroup: gurufit_sd_default_datagroup {
-  max_cache_age: "1 hour"
-}
-persist_with: gurufit_sd_default_datagroup
+# datagroup: gurufit_sd_default_datagroup {
+#   max_cache_age: "1 hour"
+# }
+# persist_with: gurufit_sd_default_datagroup
+
 
 
 #explore:  es_member{
@@ -55,6 +56,8 @@ explore: es_order_goods {
   #always_filter: {
   #  filters: [es_member.birth_dt_year: "1910 to 2021"]
   #}
+  symmetric_aggregates: yes
+
   join: es_order {
     type: left_outer
     sql_on: ${es_order_goods.order_no}  = ${es_order.order_no};;
