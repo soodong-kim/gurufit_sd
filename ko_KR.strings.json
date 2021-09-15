@@ -1,4 +1,6 @@
 {
   "Count": "수",
-  "count": "수"
+  "count": "수",
+  "cartcnt" : "장바구니수",
+  "reviewcnt" : "리뷰 총합수"
 }

@@ -90,12 +90,14 @@ view: es_goods {
 
 ##############################################################################################
   measure: count {
+    label: "count"
     type: count
     drill_fields: [goods_no, goods_nm]
   }
 
   measure: total_cart_cnt {
     description: "장바구니 총합수"
+    label: "cartcnt"
     type: sum
     value_format: "#,##0\" 개\""
     sql: ${cart_cnt} ;;
@@ -103,6 +105,7 @@ view: es_goods {
 
   measure: total_review_cnt {
     description: "리뷰 총합수"
+    label: "reviewcnt"
     type: sum
     value_format: "#,##0\" 개\""
     sql: ${review_cnt} ;;

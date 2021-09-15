@@ -28,6 +28,7 @@ view: es_goods_link_category {
 
 ##############################################################################################
   measure: count {
+    label: "count"
     type: count
     drill_fields: []
   }
