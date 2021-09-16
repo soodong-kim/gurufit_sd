@@ -49,9 +49,9 @@ view_label: "멤버집계정보"
   measure: sum_total_sale_Amt {
     label: "총판매금액(집계)"
     type: sum
-    sql: ${total_sale_Amt} ;;
+    sql: SUM((${total_sale_Amt}) ;;
 
-    can_filter: yes
+    can_filter: no
 
    drill_fields: [user_details*]
    }
