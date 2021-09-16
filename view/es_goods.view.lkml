@@ -95,7 +95,7 @@ view: es_goods {
     drill_fields: [goods_no, goods_nm]
   }
 
-  #관심상품 수
+  #총관심상품 수
   measure: total_wish_cnt {
     label: "총관심상품수"
     type: sum
