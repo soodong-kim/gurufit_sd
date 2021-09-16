@@ -181,6 +181,7 @@ view: es_member {
 
   #회원번호(primarykey)
   dimension: mem_no {
+    view_label: "회원정보"
     primary_key: yes
     label: "회원번호"
     value_format: "0"
