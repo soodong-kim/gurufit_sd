@@ -78,25 +78,24 @@ explore: es_order_goods {
       measures: [es_member.total_sale_amt]
     }
    }
-
     aggregate_table: rollup__es_order_info_reg_dt_date {
       query: {
         dimensions: [es_order_info.reg_dt_date]
         measures: [es_order_info.count]
       }
-
       materialization: {
         datagroup_trigger: gurufit_sd_default_datagroup
       }
     }
 
-
-
-
-  #join: category_goods {
-  #  type:  left_outer
-  #  sql_on: ${es_order_goods.goods_no} = ${category_goods.goodsNo} ;;
-  #  relationship: many_to_one
-  #}
-
+    aggregate_table: rollup__es_member_mem_nm__es_member_sleep_fl {
+      query: {
+        dimensions: [es_member.mem_nm, es_member.sleep_fl]
+        measures: [es_member.max_amt]
+        filters: [es_member.sleep_fl: "N"]
+      }
+      materialization: {
+        datagroup_trigger: gurufit_sd_default_datagroup
+      }
+    }
 }
