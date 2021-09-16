@@ -19,10 +19,19 @@ view_label: "멤버집계정보"
     sql: ${TABLE}.memNo ;;
   }
 
-  measure: total_sale_Amt {
+  dimension: total_sale_Amt {
+    hidden: yes
+    type: number
+      sql: ${TABLE}.total_sale_Amt ;;
+  }
+
+  measure: sum_total_sale_Amt {
     label: "총판매금액(집계)"
     type: sum
+    sql: ${total_sale_Amt} ;;
   }
+
+
 
 
 
