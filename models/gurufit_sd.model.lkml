@@ -14,8 +14,7 @@ include: "/view/**/member_sebu.view"
 
 
 datagroup: gurufit_sd_default_datagroup {
-  ###Can be set to match your etl process
-  sql_trigger: SELECT SUM(es_member.saleAmt) FROM es_member.mem_no ;;
+  sql_trigger: SELECT DATE_PART('hour', GETDATE());;
   max_cache_age: "2 hours"
 }
 
