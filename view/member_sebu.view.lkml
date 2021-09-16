@@ -2,6 +2,7 @@ view: member_sebu {
 view_label: "멤버집계정보"
   derived_table: {
     sql: SELECT  es_member.memNo
+                ,regDt
                 ,SUM(es_member.saleAmt) as total_sale_Amt
          FROM es_member
         GROUP BY memNo;;
@@ -20,9 +21,29 @@ view_label: "멤버집계정보"
   }
 
   dimension: total_sale_Amt {
+    hidden: yes
     type: number
       sql: ${TABLE}.total_sale_Amt ;;
   }
+
+#등록일
+  dimension_group: reg_dt {
+    label: "등록일"
+    hidden: yes
+    type: time
+    timeframes: [
+      raw,
+      time,
+      date,
+      week,
+      month,
+      quarter,
+      year
+    ]
+    sql: ${TABLE}.regDt ;;
+  }
+
+
 
   measure: sum_total_sale_Amt {
     label: "총판매금액(집계)"
@@ -32,7 +53,7 @@ view_label: "멤버집계정보"
    drill_fields: [user_details*]
    }
   set: user_details {
-    fields: [memNo]
+    fields: [memNo, reg_dt_date, reg_dt_month, reg_dt_week, reg_dt_year]
 
   }
 }
