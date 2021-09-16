@@ -14,8 +14,8 @@ include: "/view/**/member_sebu.view"
 
 
 datagroup: gurufit_sd_default_datagroup {
-  sql_trigger: SELECT DATE_PART('hour', GETDATE());;
-  max_cache_age: "2 hours"
+  sql_trigger: SELECT HOUR(CURTIME());;
+  max_cache_age: "1 hours"
 }
 
 persist_with: gurufit_sd_default_datagroup
