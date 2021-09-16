@@ -20,7 +20,8 @@ view_label: "멤버집계정보"
   }
 
   dimension: total_sale_Amt {
-    hidden: yes
+    hidden: no
+    can_filter: no
     type: number
       sql: ${TABLE}.total_sale_Amt ;;
   }
@@ -29,6 +30,5 @@ view_label: "멤버집계정보"
     label: "총판매금액(집계)"
     type: sum
     sql: ${total_sale_Amt} ;;
-    can_filter: no
   }
 }
