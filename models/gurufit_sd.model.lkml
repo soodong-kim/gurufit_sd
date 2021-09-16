@@ -66,7 +66,7 @@ explore: es_order_goods {
    join: member_sebu {
     type:  left_outer
     sql_on: ${es_member.mem_no} = ${member_sebu.memNo} ;;
-    relationship: many_to_one
+    relationship: one_to_one
   }
 
 
