@@ -28,7 +28,7 @@ view: es_goods {
   dimension: wish_cnt {
     label: "관심상품수"
     type: number
-    sql: ${TABLE}.wish_cnt ;;
+    sql: ${TABLE}.wishCnt ;;
   }
 
   #상품판매 여부(y/n)
