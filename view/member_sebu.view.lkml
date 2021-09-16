@@ -5,6 +5,7 @@ view_label: "멤버집계정보"
                 ,regDt
                 ,SUM(es_member.saleAmt) as total_sale_Amt
          FROM es_member
+        WHERE es_member.regDt >= '2016-01-01'
         GROUP BY memNo;;
 
     indexes: ["memNo"]
