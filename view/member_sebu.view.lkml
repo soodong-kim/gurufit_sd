@@ -17,6 +17,7 @@ view_label: "멤버집계정보"
   }
 
   measure: total_sale_Amt {
+    label: "총판매금액(집계)"
     type: sum
   }
 
