@@ -24,6 +24,13 @@ view: es_goods {
     }
   }
 
+  #관심상품 수
+  dimension: wish_cnt {
+    label: "관심상품수"
+    type: number
+    sql: ${TABLE}.wish_cnt ;;
+  }
+
   #상품판매 여부(y/n)
   dimension: goods_sell_fl {
     label: "상품판매여부(Y/N)"
@@ -43,13 +50,6 @@ view: es_goods {
     label: "장바구니수"
     type: number
     sql: ${TABLE}.cartCnt ;;
-  }
-
-  #관심상품 수
-  dimension: wish_cnt {
-    label: "관심상품수"
-    type: number
-    sql: ${TABLE}.wishCnt ;;
   }
 
   #리뷰수
@@ -93,6 +93,14 @@ view: es_goods {
     label: "count"
     type: count
     drill_fields: [goods_no, goods_nm]
+  }
+
+  #관심상품 수
+  measure: total_wish_cnt {
+    label: "총관심상품수"
+    type: sum
+    value_format: "#,##0\" 개\""
+    sql: ${wish_cnt} ;;
   }
 
   measure: total_cart_cnt {
