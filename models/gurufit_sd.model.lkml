@@ -69,6 +69,15 @@ explore: es_order_goods {
     relationship: one_to_many
   }
 
+   aggregate_table: sale_amt_yearly {
+     materialization: {
+       datagroup_trigger: gurufit_sd_default_datagroup
+     }
+    query: {
+      dimensions: [es_member.reg_dt_year]
+      measures: [es_member.total_sale_amt]
+    }
+   }
 
 
   #join: category_goods {
