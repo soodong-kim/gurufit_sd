@@ -14,29 +14,6 @@ view: es_member {
   }
 
 
-  # parameter: date_granularity {
-  #   type: date
-  #   allowed_value: {
-  #     label: "월별 구분"
-  #     value: "month"
-  #   }
-  #   allowed_value: {
-  #     label: "년별 구분"
-  #     value: "year"
-  #   }
-  # }
-
-  # dimension: this_date {
-  #   label: "조회일자"
-  #   sql:
-  #   {% if date_granularity._parameter_value == 'month' %}
-  #     ${reg_dt_month}
-  # {% elsif date_granularity._parameter_value == 'year' %}
-  #     ${reg_dt_year}
-  #   {% else %}
-  #     ${reg_dt_date}
-  #   {% endif %};;
-  # }
 
   #주소
   dimension: address {
