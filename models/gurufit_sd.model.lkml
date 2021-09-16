@@ -69,6 +69,7 @@ explore: es_order_goods {
     relationship: one_to_many
   }
 
+   #총매출액
    aggregate_table: sale_amt_yearly {
      materialization: {
        datagroup_trigger: gurufit_sd_default_datagroup
@@ -78,6 +79,8 @@ explore: es_order_goods {
       measures: [es_member.total_sale_amt]
     }
    }
+
+   #연도별 매출건수
     aggregate_table: rollup__es_order_info_reg_dt_date {
       query: {
         dimensions: [es_order_info.reg_dt_date]
@@ -88,6 +91,7 @@ explore: es_order_goods {
       }
     }
 
+    #연도별 우수고객 랭킹순 top5
     aggregate_table: rollup__es_member_mem_nm__es_member_sleep_fl {
       query: {
         dimensions: [es_member.mem_nm, es_member.sleep_fl]
@@ -98,4 +102,18 @@ explore: es_order_goods {
         datagroup_trigger: gurufit_sd_default_datagroup
       }
     }
+
+    #연도별 회원 가입자수
+    aggregate_table: rollup__es_member_entry_dt_year__es_member_sex_fl {
+      query: {
+        dimensions: [es_member.entry_dt_year, es_member.sex_fl]
+        measures: [es_member.count]
+        filters: [es_member.sex_fl: "남자,여자,-NULL"]
+      }
+
+      materialization: {
+        datagroup_trigger: gurufit_sd_default_datagroup
+      }
+    }
+
 }
