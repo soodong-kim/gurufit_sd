@@ -20,7 +20,7 @@ view_label: "멤버집계정보"
   }
 
   dimension: total_sale_Amt {
-    hidden: yes
+    hidden: no
     type: number
       sql: ${TABLE}.total_sale_Amt ;;
   }
