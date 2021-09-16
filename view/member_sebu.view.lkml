@@ -52,6 +52,7 @@ view_label: "멤버집계정보"
     sql: ${total_sale_Amt} ;;
 
     can_filter: yes
+
    drill_fields: [user_details*]
    }
   set: user_details {
