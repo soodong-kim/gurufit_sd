@@ -79,6 +79,19 @@ explore: es_order_goods {
     }
    }
 
+    aggregate_table: rollup__es_order_info_reg_dt_date {
+      query: {
+        dimensions: [es_order_info.reg_dt_date]
+        measures: [es_order_info.count]
+      }
+
+      materialization: {
+        datagroup_trigger: gurufit_sd_default_datagroup
+      }
+    }
+
+
+
 
   #join: category_goods {
   #  type:  left_outer
