@@ -10,46 +10,16 @@ include: "/view/**/es_order.view"
 include: "/view/**/es_order_goods.view"
 include: "/view/**/es_order_info.view"
 include: "/view/**/category_goods.view"
-
-# datagroup: gurufit_sd_default_datagroup {
-#   max_cache_age: "1 hour"
-# }
-# persist_with: gurufit_sd_default_datagroup
+include: "/view/**/member_sebu.view"
 
 
+datagroup: gurufit_sd_default_datagroup {
+  ###Can be set to match your etl process
+  sql_trigger: SELECT SUM(es_member.saleAmt) FROM es_member.mem_no ;;
+  max_cache_age: "2 hours"
+}
 
-#explore:  es_member{
-#  join: es_order {
-#    type: left_outer
-#    sql_on: ${es_member.mem_no} = ${es_order.mem_no} ;;
-#    relationship: one_to_many
-#  }
-
-#  join: es_order_goods {
-#    type: left_outer
-#    sql_on: ${es_order.order_no} = ${es_order_goods.order_no};;
-#    relationship: one_to_many
-#  }
-#}
-
-#explore: es_order_info {
-#  join: es_order_goods {
-#    type: left_outer
-#    sql_on: ${es_order_info.order_no} = ${es_order_goods.order_no} ;;
-#    relationship: one_to_many
-#  }
-
-#  join: es_goods {
-#    type: left_outer
-#    sql_on: ${es_order_goods.goods_no} = ${es_goods.goods_no} ;;
-#    relationship:  many_to_one
-#  }
-
-#  join: es_goods_link_category {
-#    type: left_outer
-#    sql_on: ${es_goods.goods_no} = ${es_goods_link_category.goods_no} ;;
-#    relationship: one_to_many
-#  }
+persist_with: gurufit_sd_default_datagroup
 
 explore: es_order_goods {
   label: "Skill Change Mini-Project"
@@ -93,6 +63,13 @@ explore: es_order_goods {
     sql_on: ${es_goods.brand_cd} = ${es_category_brand.cate_cd} ;;
     relationship: many_to_one
   }
+
+   join: member_sebu {
+    type:  left_outer
+    sql_on: ${es_member.mem_no} = ${member_sebu.memNo} ;;
+    relationship: many_to_one
+  }
+
 
 
   #join: category_goods {

@@ -3,13 +3,21 @@ view_label: "멤버집계정보"
 
 
   derived_table: {
-    sql: SELECT SUM(es_member.saleAmt) as total_sale_Amt
-         FROM es_member;;
+    sql: SELECT  es_member.memNo
+                ,SUM(es_member.saleAmt) as total_sale_Amt
+         FROM es_member
+        GROUP BY 1;;
+  }
+
+  dimension: memNo {
+    view_label: "회원정보"
+    type: number
+    label: "회원번호"
+    value_format: "0"
   }
 
   measure: total_sale_Amt {
     type: sum
-    sql: ${total_sale_Amt} ;;
   }
 
 
