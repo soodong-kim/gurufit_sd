@@ -1,8 +1,6 @@
 view: member_sebu {
 view_label: "멤버집계정보"
   derived_table: {
-
-
     sql: SELECT  es_member.memNo
                 ,SUM(es_member.saleAmt) as total_sale_Amt
          FROM es_member
