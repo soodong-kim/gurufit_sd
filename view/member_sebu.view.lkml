@@ -5,6 +5,8 @@ view_label: "멤버집계정보"
                 ,SUM(es_member.saleAmt) as total_sale_Amt
          FROM es_member
         GROUP BY memNo;;
+
+    indexes: ["memNo"]
   }
 
   dimension: memNo {
