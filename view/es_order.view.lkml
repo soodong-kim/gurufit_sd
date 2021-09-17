@@ -1,14 +1,8 @@
 # The name of this view in Looker is "Es Order"
 view: es_order {
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
-  sql_table_name: gurufit_to_looker.es_order ;;
-  # No primary key is defined for this view. In order to join this view in an Explore,
-  # define primary_key: yes on a dimension that has no repeated values.
+view_label: "주문서 기본정보"
 
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Add Field" in Explore.
+  sql_table_name: gurufit_to_looker.es_order ;;
 
   #구매 쿠폰 지급여부
   dimension: event_coupon_fl {
@@ -192,32 +186,16 @@ view: es_order {
     sql: ${TABLE}.userRequestMemo ;;
   }
 
-  # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
-  # measures for numeric dimensions, but you can also add measures of many different types.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
-
+##############################################################################################
   measure: count {
     type: count
+    label: "count"
     drill_fields: [order_no, order_goods_nm, payment_dt_month]
-  }
-
-  # These sum and average measures are hidden by default.
-  # If you want them to show up in your explore, remove hidden: yes.
-
-  measure: total_mem_no {
-    type: sum
-    hidden: no
-    sql: ${mem_no} ;;
-  }
-
-  measure: average_mem_no {
-    type: average
-    hidden: no
-    sql: ${mem_no} ;;
   }
 
   measure: total_order_goods_cnt {
     type: sum
+    label: "ordergoodscnt"
     hidden: no
     drill_fields: [order_no, order_goods_nm, payment_dt_month]
     sql: ${order_goods_cnt} ;;
@@ -225,8 +203,9 @@ view: es_order {
 
   measure: average_order_goods_cnt {
     type: average
+    label: "aveordergoodscnt"
     hidden: no
     sql: ${order_goods_cnt} ;;
   }
-
+##############################################################################################
 }

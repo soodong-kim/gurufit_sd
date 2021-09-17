@@ -1,14 +1,8 @@
 # The name of this view in Looker is "Es Member"
 view: es_member {
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
-  sql_table_name: gurufit_to_looker.es_member ;;
-  # No primary key is defined for this view. In order to join this view in an Explore,
-  # define primary_key: yes on a dimension that has no repeated values.
+  view_label: "회원정보"
 
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Address" in Explore.
+  sql_table_name: gurufit_to_looker.es_member ;;
 
   parameter: this_year {
     type: number
@@ -18,29 +12,6 @@ view: es_member {
     type: number
     sql: {% parameter this_year %} ;;
   }
-  # parameter: date_granularity {
-  #   type: date
-  #   allowed_value: {
-  #     label: "월별 구분"
-  #     value: "month"
-  #   }
-  #   allowed_value: {
-  #     label: "년별 구분"
-  #     value: "year"
-  #   }
-  # }
-
-  # dimension: this_date {
-  #   label: "조회일자"
-  #   sql:
-  #   {% if date_granularity._parameter_value == 'month' %}
-  #     ${reg_dt_month}
-  # {% elsif date_granularity._parameter_value == 'year' %}
-  #     ${reg_dt_year}
-  #   {% else %}
-  #     ${reg_dt_date}
-  #   {% endif %};;
-  # }
 
 
 
@@ -187,8 +158,10 @@ view: es_member {
 
   #회원번호(primarykey)
   dimension: mem_no {
+    view_label: "회원정보"
     primary_key: yes
     label: "회원번호"
+    value_format: "0"
     type: number
     sql: ${TABLE}.memNo ;;
   }
@@ -542,9 +515,6 @@ view: es_member {
     sql: ${TABLE}.memberFl ;;
   }
 
-  # Dates and timestamps can be represented in Looker using a dimension group of type: time.
-  # Looker converts dates and timestamps to the specified timeframes within the dimension group.
-
  #결혼일
   dimension_group: marri {
     label: "결혼일"
@@ -563,17 +533,16 @@ view: es_member {
     sql: ${TABLE}.marriDate ;;
   }
 
-  # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
-  # measures for numeric dimensions, but you can also add measures of many different types.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
-
+##############################################################################################
   measure: count {
+    label: "count"
     type: count
     drill_fields: [mem_no, age, age_tier]
   }
 
   measure: max_amt {
     type: max
+    label: "총금액"
     #filters: [sale_cnt: ">50"]
     value_format: "#,##0\" 원\""
     sql: ${sale_amt} ;;
@@ -581,6 +550,7 @@ view: es_member {
 
   measure: total_sale_amt {
     type: sum
+    label: "saleamt"
     value_format: "#,##0\" 원\""
     hidden: no
     sql: ${sale_amt} ;;
@@ -588,12 +558,14 @@ view: es_member {
 
   measure: average_sale_amt {
     type: average
+    label: "avesaleamt"
     value_format: "#,##0\" 원\""
     hidden: no
     sql: ${sale_amt} ;;
   }
 
   measure: total_sale_cnt {
+    label: "totalsalecnt"
     type: sum
     value_format: "#,##0\" 족\""
     hidden: no
@@ -601,25 +573,36 @@ view: es_member {
   }
 
   measure: average_sale_cnt {
+    label: "평균판매수"
     type: average
     hidden: no
     sql: ${sale_cnt} ;;
   }
 
   measure: total_login_cnt {
+    label: "총로그인수"
     type: sum
     sql: ${login_cnt} ;;
   }
 
   measure: total_mileage {
+    label: "토탈마일리지"
     type: sum
     sql: ${mileage} ;;
   }
 
   measure: average_mileage {
+    label: "평균마일리지"
     type: average
     sql: ${mileage} ;;
   }
-  # These sum and average measures are hidden by default.
-  # If you want them to show up in your explore, remove hidden: yes.
+
+  measure: year_total_sale_amt{
+   label: "년도총합계금액"
+   value_format: "#,##0\" 원\""
+   type: sum_distinct
+   sql: ${sale_amt};;
+  }
+
+  ##############################################################################################
 }

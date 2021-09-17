@@ -1,15 +1,8 @@
 # The name of this view in Looker is "Es Order Goods"
 view: es_order_goods {
-  # The sql_table_name parameter indicates the underlying database table
-  # to be used for all fields in this view.
+view_label: "주문 상품 정보"
+
   sql_table_name: gurufit_to_looker.es_orderGoods ;;
-  # No primary key is defined for this view. In order to join this view in an Explore,
-  # define primary_key: yes on a dimension that has no repeated values.
-
-  # Here's what a typical dimension looks like in LookML.
-  # A dimension is a groupable field that can be used to filter query results.
-  # This dimension will be called "Add Goods Cnt" in Explore.
-
 
   #주문번호
   dimension: order_no {
@@ -82,7 +75,7 @@ view: es_order_goods {
     sql: ${TABLE}.goodsNm ;;
      link: {
       label: "Google Search"
-      url: "http://www.google.com/search?q={{ value }}+Clothig"
+      url: "http://www.google.com/search?q={{ value }}"
       icon_url: "https://www.google.com/favicon.ico"
     }
   }
@@ -334,7 +327,6 @@ view: es_order_goods {
   }
 
 
-
 ##############################################################################################
 # 판매대금-이익금 계산을 위해 아래의 필드 추가
 # 1. 기본 할인 금액 -> basic_dc_price
@@ -524,20 +516,16 @@ dimension: payment_dt_hour_tier {
     else "5알수없음"
     end;;
 }
+
 ##############################################################################################
-  # A measure is a field that uses a SQL aggregate function. Here are count, sum, and average
-  # measures for numeric dimensions, but you can also add measures of many different types.
-  # Click on the type parameter to see all the options in the Quick Help panel on the right.
-
-  # These sum and average measures are hidden by default.
-  # If you want them to show up in your explore, remove hidden: yes.
-
   measure: count {
+    label: "count"
     type: count
     #drill_fields: []
   }
 
   measure: total_goods_cnt {
+    label: "totalgoodscnt"
     type: sum
     drill_fields: [goods_nm, fixed_price, basic_dc_price, goods_price, discount_price, sun_price]
     value_format: "#,##0\" 족\""
@@ -553,6 +541,7 @@ dimension: payment_dt_hour_tier {
   }
 
   measure: total_member_mileage {
+    label: "total_member_mileage"
     type: sum
     value_format: "#,##0\" 원\""
     sql: ${member_mileage} ;;
@@ -560,6 +549,7 @@ dimension: payment_dt_hour_tier {
 
   measure: total_goods_mileage {
     description: "상품중 적립금 지불한 금액에 한함"
+    label: "total_goods_mileage"
     type: sum
     filters: [plus_mileage_fl: "y"]
     drill_fields: [goods_nm, fixed_price, basic_dc_price, goods_mileage]
@@ -748,4 +738,5 @@ dimension: payment_dt_hour_tier {
     hidden: yes
     sql: ${order_cd} ;;
   }
+  ##############################################################################################
 }
