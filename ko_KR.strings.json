@@ -1,0 +1,15 @@
+{
+  "Count": "수",
+  "count": "수",
+  "cartcnt" : "장바구니수",
+  "reviewcnt" : "리뷰 총합수",
+  "avesaleamt" : "평균판매금액",
+  "saleamt" : "판매금액",
+  "totalsalecnt" : "총판매수",
+  "totalgoodscnt" : "총판매족수",
+  "total_goods_mileage" : "총상품마일리지",
+  "total_member_mileage" : "총회원마일리지",
+  "totalgoodscnt" : "총물건수",
+  "ordergoodscnt" : "총주문수",
+  "aveordergoodscnt" : "평균주문수"
+}

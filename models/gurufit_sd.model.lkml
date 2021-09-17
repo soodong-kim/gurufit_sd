@@ -10,56 +10,23 @@ include: "/view/**/es_order.view"
 include: "/view/**/es_order_goods.view"
 include: "/view/**/es_order_info.view"
 include: "/view/**/category_goods.view"
+include: "/view/**/member_sebu.view"
 
 
-#datagroup: gurufit_sd_default_datagroup {
-#  max_cache_age: "1 hour"
-#}
+datagroup: gurufit_sd_default_datagroup {
+  sql_trigger: SELECT HOUR(CURTIME());;
+  max_cache_age: "1 hours"
+}
 
-#persist_with: gurufit_sd_default_datagroup
-
-# # Select the views that should be a part of this model,
-# # and define the joins that connect them together.
-#
-
-#explore:  es_member{
-#  join: es_order {
-#    type: left_outer
-#    sql_on: ${es_member.mem_no} = ${es_order.mem_no} ;;
-#    relationship: one_to_many
-#  }
-
-#  join: es_order_goods {
-#    type: left_outer
-#    sql_on: ${es_order.order_no} = ${es_order_goods.order_no};;
-#    relationship: one_to_many
-#  }
-#}
-
-#explore: es_order_info {
-#  join: es_order_goods {
-#    type: left_outer
-#    sql_on: ${es_order_info.order_no} = ${es_order_goods.order_no} ;;
-#    relationship: one_to_many
-#  }
-
-#  join: es_goods {
-#    type: left_outer
-#    sql_on: ${es_order_goods.goods_no} = ${es_goods.goods_no} ;;
-#    relationship:  many_to_one
-#  }
-
-#  join: es_goods_link_category {
-#    type: left_outer
-#    sql_on: ${es_goods.goods_no} = ${es_goods_link_category.goods_no} ;;
-#    relationship: one_to_many
-#  }
+persist_with: gurufit_sd_default_datagroup
 
 explore: es_order_goods {
   label: "Skill Change Mini-Project"
   #always_filter: {
   #  filters: [es_member.birth_dt_year: "1910 to 2021"]
   #}
+  symmetric_aggregates: yes
+
   join: es_order {
     type: left_outer
     sql_on: ${es_order_goods.order_no}  = ${es_order.order_no};;
@@ -96,11 +63,57 @@ explore: es_order_goods {
     relationship: many_to_one
   }
 
+   join: member_sebu {
+    type: left_outer
+    sql_on: ${es_member.mem_no} = ${member_sebu.memNo} ;;
+    relationship: one_to_many
+  }
 
-  #join: category_goods {
-  #  type:  left_outer
-  #  sql_on: ${es_order_goods.goods_no} = ${category_goods.goodsNo} ;;
-  #  relationship: many_to_one
-  #}
+   #총매출액
+   aggregate_table: sale_amt_yearly {
+     materialization: {
+       datagroup_trigger: gurufit_sd_default_datagroup
+     }
+    query: {
+      dimensions: [es_member.reg_dt_year]
+      measures: [es_member.total_sale_amt]
+    }
+   }
+
+   #연도별 매출건수
+    aggregate_table: rollup__es_order_info_reg_dt_date {
+      query: {
+        dimensions: [es_order_info.reg_dt_date]
+        measures: [es_order_info.count]
+      }
+      materialization: {
+        datagroup_trigger: gurufit_sd_default_datagroup
+      }
+    }
+
+    #연도별 우수고객 랭킹순 top5
+    aggregate_table: rollup__es_member_mem_nm__es_member_sleep_fl {
+      query: {
+        dimensions: [es_member.mem_nm, es_member.sleep_fl]
+        measures: [es_member.max_amt]
+        filters: [es_member.sleep_fl: "N"]
+      }
+      materialization: {
+        datagroup_trigger: gurufit_sd_default_datagroup
+      }
+    }
+
+    #연도별 회원 가입자수
+    aggregate_table: rollup__es_member_entry_dt_year__es_member_sex_fl {
+      query: {
+        dimensions: [es_member.entry_dt_year, es_member.sex_fl]
+        measures: [es_member.count]
+        filters: [es_member.sex_fl: "남자,여자,-NULL"]
+      }
+
+      materialization: {
+        datagroup_trigger: gurufit_sd_default_datagroup
+      }
+    }
 
 }
